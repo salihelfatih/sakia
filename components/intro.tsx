@@ -3,13 +3,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { BsLinkedin, BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
+import {
+  BsLinkedin,
+  BsFacebook,
+  BsTwitter,
+  BsInstagram,
+  BsTiktok,
+} from "react-icons/bs";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import BecomeClientDialog from "@/components/become-a-client";
 import Magnetic from "@/components/magnetic";
-import logo from "@/public/logo.webp";
+import logo from "@/public/logo.png";
 
 const texts = [
   "We Empower People with Modern Technologies",
@@ -129,8 +135,7 @@ export default function Intro() {
             <Image
               src={logo}
               alt="Sakia Labs Logo"
-              width={150}
-              height={150}
+              style={{ width: 192, height: 192 }}
               quality={95}
               priority={true}
               className="sm:w-[192px] sm:h-[192px]"
@@ -161,7 +166,7 @@ export default function Intro() {
             <Magnetic>
               <button
                 onClick={() => setShowClientDialog(true)}
-                className="bg-gray-900 text-white px-6 py-3 sm:px-7 sm:py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition mb-3 text-base sm:text-lg"
+                className="bg-gray-800 text-white px-6 py-3 sm:px-7 sm:py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-850 active:scale-105 transition mb-3 text-base sm:text-lg"
               >
                 Become a Client
               </button>
@@ -180,7 +185,11 @@ export default function Intro() {
                 { icon: BsFacebook, href: "https://facebook.com/sakialabs" },
                 { icon: BsTwitter, href: "https://twitter.com/sakialabs" },
                 { icon: BsInstagram, href: "https://instagram.com/sakialabs" },
-                { icon: BsLinkedin, href: "https://linkedin.com/sakialabs" },
+                { icon: BsTiktok, href: "https://tiktok.com/@sakia.labs" },
+                {
+                  icon: BsLinkedin,
+                  href: "https://www.linkedin.com/company/sakialabs",
+                },
                 { icon: FaGithubSquare, href: "https://github.com/sakialabs" },
               ].map((item, index) => (
                 <Magnetic key={index}>

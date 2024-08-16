@@ -5,13 +5,7 @@ import { servicesData } from "@/lib/data";
 
 type ServiceProps = (typeof servicesData)[number];
 
-export default function Service({
-  title,
-  description,
-  tags,
-  imageUrl,
-  link,
-}: ServiceProps) {
+export default function Service({ title, description, tags }: ServiceProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -58,23 +52,6 @@ export default function Service({
               </li>
             ))}
           </ul>
-          <div className="mt-3 flex-grow">
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full h-24 relative overflow-hidden rounded-lg"
-            >
-              <Image
-                src={imageUrl}
-                alt="Service we offer"
-                fill={true}
-                sizes="(min-width: 640px) 300px, 100vw"
-                style={{ objectFit: "cover" }}
-                className="transition-transform duration-300 group-hover:scale-110"
-              />
-            </a>
-          </div>
         </div>
       </section>
     </motion.div>

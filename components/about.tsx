@@ -84,14 +84,10 @@ function TeamMember({ name, role, image }: TeamMemberProps) {
   return (
     <motion.div
       ref={ref}
-      style={{
-        y,
-        rotate,
-        scale,
-      }}
+      style={{ y, rotate, scale }}
       className="group bg-gray-100 h-full border border-black/5 rounded-lg overflow-hidden relative hover:bg-gray-200 transition dark:text-white dark:bg-white/10 dark:hover:bg-white/20 p-6 flex flex-col items-center"
     >
-      <div className="w-32 h-32 relative mb-4 overflow-hidden rounded-full">
+      <div className="w-40 h-40 relative mb-4 overflow-hidden rounded-full">
         <Image
           src={image}
           alt={name}
@@ -101,8 +97,8 @@ function TeamMember({ name, role, image }: TeamMemberProps) {
           className="transition-transform duration-300 group-hover:scale-110"
         />
       </div>
-      <h3 className="text-xl font-semibold">{name}</h3>
-      <p className="text-sm text-gray-700 dark:text-white/70">{role}</p>
+      <h3 className="text-2xl font-semibold">{name}</h3>
+      <p className="text-lg text-gray-700 dark:text-white/70">{role}</p>
     </motion.div>
   );
 }
@@ -186,17 +182,15 @@ const AnimatedText = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}
       >
-        At Sakia, the timeless waterwheel <strong>embodies</strong> the
-        continuous flow of sustenance and life.{" "}
-        <em>Inspired by this symbol,</em> we channel creativity and technology
-        to craft digital solutions that uplift and empower.{" "}
-        <em>Our mission is to harness technology to</em>{" "}
-        <strong>cultivate growth</strong>,{" "}
+        At Sakia, the timeless waterwheel embodies the continuous flow of
+        sustenance and life. Inspired by this symbol, we channel creativity and
+        technology to craft digital solutions that uplift and empower. Our
+        mission is to harness technology to <strong>cultivate growth</strong>,{" "}
         <strong>foster meaningful connections</strong>, and{" "}
-        <strong>create a lasting positive impact</strong>.{" "}
-        <em>Every project we undertake is a step towards</em>{" "}
-        <strong>creating value and driving empowerment</strong>{" "}
-        <em>for communities and businesses alike</em>.
+        <strong>create a lasting positive impact</strong>. Every project we
+        undertake is a step towards{" "}
+        <strong>creating value and driving empowerment</strong> for communities
+        and businesses alike.
       </motion.p>
     </motion.div>
   );
@@ -204,6 +198,13 @@ const AnimatedText = () => {
 
 export default function About() {
   const ref = useSectionInView("About Us");
+
+  const getGridColumns = () => {
+    const teamSize = teamData.length;
+    if (teamSize === 2) return "sm:grid-cols-2";
+    if (teamSize === 3) return "sm:grid-cols-3";
+    return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+  };
 
   return (
     <motion.section
@@ -226,7 +227,7 @@ export default function About() {
         </div>
 
         <SectionHeading size="medium">Our Team</SectionHeading>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+        <div className={`grid ${getGridColumns()} gap-8 mt-8 justify-center`}>
           {teamData.map((member, index) => (
             <TeamMember key={index} {...member} />
           ))}

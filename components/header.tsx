@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import Image from "next/image";
 import BecomeClientDialog from "@/components/become-a-client";
-import Logo from "@/public/logo.webp";
+import Logo from "@/public/logo.png";
 import Magnetic from "@/components/magnetic";
 
 export default function Header() {
@@ -90,8 +90,7 @@ export default function Header() {
             <Image
               src={Logo}
               alt="Logo"
-              width={24}
-              height={24}
+              style={{ width: 24, height: 24 }}
               className="mr-2"
             />
             <span className="text-gray-800 dark:text-gray-200">Sakia Labs</span>

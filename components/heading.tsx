@@ -11,7 +11,9 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   const sizeClasses = size === "large" ? "text-3xl" : "text-2xl";
   return (
-    <h2 className={`${sizeClasses} font-medium capitalize mb-8 text-center`}>
+    <h2
+      className={`${sizeClasses} font-medium capitalize mb-8 text-center className="mb-20 w-full overflow-hidden"`}
+    >
       {children}
     </h2>
   );

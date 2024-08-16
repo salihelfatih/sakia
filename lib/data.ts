@@ -3,18 +3,11 @@ import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import client1 from "@/public/avatars/client1.jpg";
 import client2 from "@/public/avatars/client2.jpg";
-// import client3 from "@/public/avatars/client3.jpg";
 import member1 from "@/public/avatars/member1.jpg";
 import member2 from "@/public/avatars/member2.jpg";
 import member3 from "@/public/avatars/member3.jpg";
-import member4 from "@/public/avatars/member4.jpg";
 import project1 from "@/public/projects/project1.png";
 import project2 from "@/public/projects/project2.png";
-// import project3 from "@/public/projects/project3.png";
-import service1 from "@/public/services/service1.jpg";
-// import service2 from "@/public/services/service2.jpg";
-// import service3 from "@/public/services/service3.jpg";
-// import service4 from "@/public/services/service4.jpg";
 import value1 from "@/public/values/value1.png";
 import value2 from "@/public/values/value2.png";
 import value3 from "@/public/values/value3.png";
@@ -54,8 +47,6 @@ export const servicesData = [
     description:
       "We build responsive and user-friendly websites using modern technologies.",
     tags: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Material UI"],
-    imageUrl: service1,
-    link: "https://example.com/web-development",
     icon: React.createElement(FaReact),
   },
   {
@@ -63,8 +54,6 @@ export const servicesData = [
     description:
       "We build APIs that are fast, reliable, and easy to integrate with other services.",
     tags: ["Node.js", "Express", "Django", "ASP.NET"],
-    imageUrl: service1,
-    link: "https://example.com/api-development",
     icon: React.createElement
   },
   {
@@ -72,8 +61,6 @@ export const servicesData = [
     description:
       "We design databases that are optimized for performance and scalability.",
     tags: ["PostgreSQL", "MySQL", "MongoDB"],
-    imageUrl: service1,
-    link: "https://example.com/database-design",
     icon: React.createElement
   },
   {
@@ -81,8 +68,6 @@ export const servicesData = [
     description:
       "We build machine learning models that help businesses make data-driven decisions.",
     tags: ["Python", "PyTorch", "Pandas"],
-    imageUrl: service1,
-    link: "https://example.com/machine-learning",
     icon: React.createElement
   },
   {
@@ -90,8 +75,6 @@ export const servicesData = [
     description:
       "We build mobile applications for both Android and iOS using React Native.",
     tags: ["React Native", "iOS", "Android"],
-    imageUrl: service1,
-    link: "https://example.com/mobile-development",
     icon: React.createElement(CgWorkAlt),
   },
   {
@@ -99,8 +82,6 @@ export const servicesData = [
     description:
       "We build online stores that are fast, secure, and easy to manage.",
     tags: ["WordPress", "Shopify", "Wix"],
-    imageUrl: service1,
-    link: "https://example.com/ecommerce-development",
     icon: React.createElement
   },
   {
@@ -108,8 +89,6 @@ export const servicesData = [
     description:
       "We help businesses rank higher on search engines and reach more customers.",
     tags: ["Google Ads", "Facebook Ads", "Social Media Marketing"],
-    imageUrl: service1,
-    link: "https://example.com/seo-marketing",
     icon: React.createElement
   },
   {
@@ -117,8 +96,6 @@ export const servicesData = [
     description:
       "We create stunning visuals that help businesses stand out from the competition.",
     tags: ["Brand Identity", "Logo Design", "UI/UX Design"],
-    imageUrl: service1,
-    link: "https://example.com/graphic-design",
     icon: React.createElement
   },
   {
@@ -126,8 +103,7 @@ export const servicesData = [
     description:
       "We create animations and videos that bring your brand to life.",
     tags: ["Motion Graphics", "3D Animation", "Video Editing"],
-    imageUrl: service1,
-    link: "https://example.com/animation-video",
+
     icon: React.createElement
   }
 ] as const;
@@ -144,37 +120,27 @@ export const valuesData = [
     icon: value2,
   },
   {
-    title: "Sustainability",
-    description: "We create solutions that are effective and sustainable, delivering long-term benefits for our clients.",
-    icon:  value3,
-  },
-  {
     title: "Integrity",
     description: "We uphold the highest standards of honesty and transparency in all our interactions and deliverables.",
     icon: value4,
+  },
+  {
+    title: "Sustainability",
+    description: "We create solutions that are effective and sustainable, delivering long-term benefits for our clients.",
+    icon:  value3,
   },
 ] as const;
 
 export const teamData = [
   {
     name: "Salih",
-    role: "Founder & CEO",
+    role: "Founder & Technical Director",
     image: member1,
   },
   {
-    name: "Zainab",
-    role: "Lead Designer",
-    image: member2,
-  },
-  {
     name: "Ahmed",
-    role: "Lead Animator",
+    role: "Co-founder & Creative Director",
     image: member3,
-  },
-  {
-    name: "Katie",
-    role: "Content Manager",
-    image: member4,
   },
 ] as const;
 
@@ -183,7 +149,7 @@ export const projectsData = [
     title: "Nabeel Barber Shop",
     description:
       "A website for a barber shop that allows customers to book appointments online.",
-    tags: ["React", "ASP.NET", "PostgreSQL", "Docker", "Material UI"],
+    tags: ["WordPress", "Elementor", "WooCommerce", "SEO"],
     imageUrl: project1,
     link: "https://nabeelbarber.ca",
   },
@@ -191,7 +157,7 @@ export const projectsData = [
     title: "Radio Deeshak",
     description:
       "A music streaming platform that allows users to listen to their favorite songs.",
-    tags: ["Next", "TypeScript", "Tailwind CSS", "MongoDB"],
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     imageUrl: project2,
     link: "https:/deeshak.com",
   }

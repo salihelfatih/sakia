@@ -1,8 +1,14 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { BsLinkedin, BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
+import { motion } from "framer-motion";
+import {
+  BsLinkedin,
+  BsFacebook,
+  BsTwitter,
+  BsInstagram,
+  BsTiktok,
+} from "react-icons/bs";
 import { FaGithubSquare } from "react-icons/fa";
 import Magnetic from "@/components/magnetic";
 import PrivacyPolicy from "./privacy-policy";
@@ -29,15 +35,24 @@ const SocialIcon: React.FC<SocialIconProps> = ({ Icon, href }) => (
 );
 
 export default function Footer() {
-  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
-  const [showTermsAndConditions, setShowTermsAndConditions] = useState(false);
+  const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
+  const [isTermsAndConditionsOpen, setIsTermsAndConditionsOpen] =
+    useState(false);
+
+  const handleOpenPrivacyPolicy = useCallback(() => {
+    setIsPrivacyPolicyOpen(true);
+  }, []);
 
   const handleClosePrivacyPolicy = useCallback(() => {
-    setShowPrivacyPolicy(false);
+    setIsPrivacyPolicyOpen(false);
+  }, []);
+
+  const handleOpenTermsAndConditions = useCallback(() => {
+    setIsTermsAndConditionsOpen(true);
   }, []);
 
   const handleCloseTermsAndConditions = useCallback(() => {
-    setShowTermsAndConditions(false);
+    setIsTermsAndConditionsOpen(false);
   }, []);
 
   return (
@@ -75,8 +90,12 @@ export default function Footer() {
                   href="https://instagram.com/sakialabs"
                 />
                 <SocialIcon
+                  Icon={BsTiktok}
+                  href="https://tiktok.com/@sakia.labs"
+                />
+                <SocialIcon
                   Icon={BsLinkedin}
-                  href="https://linkedin.com/sakialabs"
+                  href="https://www.linkedin.com/company/sakialabs"
                 />
                 <SocialIcon
                   Icon={FaGithubSquare}
@@ -91,9 +110,9 @@ export default function Footer() {
               transition={{ delay: 0.4 }}
             >
               <p className="text-sm text-gray-600 dark:text-gray-400 text-center md:text-right">
-                Phone: +1 (123) 456-7890
+                Phone: +1 (437) 219-9433
                 <br />
-                Email: info@sakia.io
+                Email: hello@sakialabs.io
               </p>
             </motion.div>
           </div>
@@ -104,15 +123,13 @@ export default function Footer() {
             transition={{ delay: 0.5 }}
           >
             <button
-              onClick={() => setShowPrivacyPolicy(true)}
-              // style={{ textDecoration: "underline" }}
-              className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-950  dark:hover:text-gray-200 mr-4"
+              onClick={handleOpenPrivacyPolicy}
+              className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-950 dark:hover:text-gray-200 mr-4"
             >
               Privacy Policy
             </button>
             <button
-              onClick={() => setShowTermsAndConditions(true)}
-              // style={{ textDecoration: "underline" }}
+              onClick={handleOpenTermsAndConditions}
               className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-950 dark:hover:text-gray-200"
             >
               Terms and Conditions
@@ -120,14 +137,14 @@ export default function Footer() {
           </motion.div>
         </div>
       </footer>
-      <AnimatePresence>
-        {showPrivacyPolicy && (
-          <PrivacyPolicy onClose={handleClosePrivacyPolicy} />
-        )}
-        {showTermsAndConditions && (
-          <TermsAndConditions onClose={handleCloseTermsAndConditions} />
-        )}
-      </AnimatePresence>
+      <PrivacyPolicy
+        isOpen={isPrivacyPolicyOpen}
+        onClose={handleClosePrivacyPolicy}
+      />
+      <TermsAndConditions
+        isOpen={isTermsAndConditionsOpen}
+        onClose={handleCloseTermsAndConditions}
+      />
     </>
   );
 }
