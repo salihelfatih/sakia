@@ -5,7 +5,6 @@ import client1 from "@/public/avatars/client1.jpg";
 import client2 from "@/public/avatars/client2.jpg";
 import member1 from "@/public/avatars/member1.jpg";
 import member2 from "@/public/avatars/member2.jpg";
-import member3 from "@/public/avatars/member3.jpg";
 import project1 from "@/public/projects/project1.png";
 import project2 from "@/public/projects/project2.png";
 import value1 from "@/public/values/value1.png";
@@ -46,14 +45,14 @@ export const servicesData = [
     title: "Frontend Development",
     description:
       "We build responsive and user-friendly websites using modern technologies.",
-    tags: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Material UI"],
+    tags: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Material UI", "Framer Motion", "GSAP"],
     icon: React.createElement(FaReact),
   },
   {
     title: "API Development",
     description:
       "We build APIs that are fast, reliable, and easy to integrate with other services.",
-    tags: ["Node.js", "Express", "Django", "ASP.NET"],
+    tags: ["Node.js", "Express", "ASP.NET", "Django"],
     icon: React.createElement
   },
   {
@@ -95,14 +94,14 @@ export const servicesData = [
     title: "Graphic Design",
     description:
       "We create stunning visuals that help businesses stand out from the competition.",
-    tags: ["Brand Identity", "Logo Design", "UI/UX Design"],
+    tags: ["Brand Identity", "Logo Design", "UI/UX Design", "Illustrations",],
     icon: React.createElement
   },
   {
     title: "Animation & Video",
     description:
       "We create animations and videos that bring your brand to life.",
-    tags: ["Motion Graphics", "3D Animation", "Video Editing"],
+    tags: ["Motion Graphics", "2D Animation", "3D Animation", "Video Editing"],
 
     icon: React.createElement
   }
@@ -140,11 +139,19 @@ export const teamData = [
   {
     name: "Ahmed",
     role: "Co-founder & Creative Director",
-    image: member3,
+    image: member2,
   },
 ] as const;
 
 export const projectsData = [
+  {
+    title: "Radio Deeshak",
+    description:
+      "A music streaming platform that allows users to listen to their favorite songs.",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    imageUrl: project2,
+    link: "https:/deeshak.com",
+  },
   {
     title: "Nabeel Barber Shop",
     description:
@@ -153,29 +160,21 @@ export const projectsData = [
     imageUrl: project1,
     link: "https://nabeelbarber.ca",
   },
-  {
-    title: "Radio Deeshak",
-    description:
-      "A music streaming platform that allows users to listen to their favorite songs.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    imageUrl: project2,
-    link: "https:/deeshak.com",
-  }
 ] as const;
 
 export const reviewsData = [
   {
-    name: "Nabeel Ahmed",
-    comment: "It was a great experience working with the team at Sakia Labs. They were very professional and delivered the project on time.",
+    name: "Osman Malik",
+    comment: "I am very satisfied with the work done by Sakia Labs. They exceeded my expectations and I would highly recommend them to anyone looking for a reliable tech partner.",
     rating: 5,
+    date: "2024-06-15",
+    avatarUrl: client2,
+  },
+  {
+    name: "Nabeel Musa",
+    comment: "It was a great experience working with the team at Sakia Labs. They were very professional and delivered the project on time.",
+    rating: 4.5,
     date: "2023-08-02",
     avatarUrl: client1,
   },
-  {
-    name: "Osman Malik",
-    comment: "I am very satisfied with the work done by Sakia Labs. They exceeded my expectations and I would highly recommend them to anyone looking for a reliable tech partner.",
-    rating: 4.5,
-    date: "2024-06-15",
-    avatarUrl: client2,
-  }
 ] as const;

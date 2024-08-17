@@ -183,14 +183,14 @@ const AnimatedText = () => {
         transition={{ duration: 0.8, delay: 0.7 }}
       >
         At Sakia, the timeless waterwheel embodies the continuous flow of
-        sustenance and life. Inspired by this symbol, we channel creativity and
-        technology to craft digital solutions that uplift and empower. Our
-        mission is to harness technology to <strong>cultivate growth</strong>,{" "}
+        sustenance and life. Inspired by this profound symbol, we channel
+        creativity and technology to craft digital solutions that uplift and
+        empower. Our mission is to harness technology to{" "}
+        <strong>cultivate growth</strong>,{" "}
         <strong>foster meaningful connections</strong>, and{" "}
         <strong>create a lasting positive impact</strong>. Every project we
-        undertake is a step towards{" "}
-        <strong>creating value and driving empowerment</strong> for communities
-        and businesses alike.
+        undertake is a step towards <strong>creating value</strong>, and{" "}
+        <strong>driving empowerment</strong> for communities and businesses.
       </motion.p>
     </motion.div>
   );
