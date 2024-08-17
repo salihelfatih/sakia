@@ -167,14 +167,14 @@ export const reviewsData = [
     name: "Osman Malik",
     comment: "I am very satisfied with the work done by Sakia Labs. They exceeded my expectations and I would highly recommend them to anyone looking for a reliable tech partner.",
     rating: 5,
-    date: "2024-06-15",
-    avatarUrl: client2,
+    date: "2024-05-14",
+    avatarUrl: client1,
   },
   {
     name: "Nabeel Musa",
     comment: "It was a great experience working with the team at Sakia Labs. They were very professional and delivered the project on time.",
     rating: 4.5,
     date: "2023-08-02",
-    avatarUrl: client1,
+    avatarUrl: client2,
   },
 ] as const;

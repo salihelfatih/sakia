@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Star, StarHalf } from "lucide-react";
 
@@ -8,7 +8,7 @@ type ReviewProps = {
   comment: string;
   rating: number;
   date: string;
-  avatarUrl: string;
+  avatarUrl: string | StaticImageData;
   index: number;
 };
 
