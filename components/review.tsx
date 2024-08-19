@@ -5,6 +5,7 @@ import { Star, StarHalf } from "lucide-react";
 
 type ReviewProps = {
   name: string;
+  organization: string;
   comment: string;
   rating: number;
   date: string;
@@ -14,6 +15,7 @@ type ReviewProps = {
 
 export default function Review({
   name,
+  organization,
   comment,
   rating,
   date,
@@ -87,6 +89,9 @@ export default function Review({
             </div>
             <div>
               <h3 className="text-lg font-semibold">{name}</h3>
+              <h4 className="text-sm text-gray-600 dark:text-gray-400">
+                {organization}
+              </h4>
               <div className="flex items-center">
                 <div className="flex">{renderStars(rating)}</div>
                 <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
@@ -96,7 +101,7 @@ export default function Review({
             </div>
           </div>
           <p className="flex-grow leading-relaxed text-gray-700 dark:text-white/70 mb-4 overflow-y-auto">
-            {comment}
+            "{comment}"
           </p>
         </div>
       </section>

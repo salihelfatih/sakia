@@ -44,7 +44,7 @@ export const servicesData = [
   {
     title: "Frontend Development",
     description:
-      "We build responsive and user-friendly websites using modern technologies.",
+      "We craft responsive and user-friendly websites using modern technologies.",
     tags: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Material UI", "Framer Motion", "GSAP"],
     icon: React.createElement(FaReact),
   },
@@ -52,35 +52,35 @@ export const servicesData = [
     title: "API Development",
     description:
       "We build APIs that are fast, reliable, and easy to integrate with other services.",
-    tags: ["Node.js", "Express", "ASP.NET", "Django"],
+    tags: ["Node.js", "Express", "ASP.NET", "Django", "Laravel", "Spring Boot", "Ruby on Rails"],
     icon: React.createElement
   },
   {
     title: "Database Design",
     description:
       "We design databases that are optimized for performance and scalability.",
-    tags: ["PostgreSQL", "MySQL", "MongoDB"],
+    tags: ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Firebase"],
     icon: React.createElement
   },
   {
     title: "Machine Learning",
     description:
-      "We build machine learning models that help businesses make data-driven decisions.",
-    tags: ["Python", "PyTorch", "Pandas"],
+      "We implement machine learning models that help make data-driven decisions.",
+    tags: ["Python", "PyTorch", "Scikit-learn"],
     icon: React.createElement
   },
   {
     title: "Mobile Development",
     description:
-      "We build mobile applications for both Android and iOS using React Native.",
-    tags: ["React Native", "iOS", "Android"],
+      "We develop mobile applications for both Android and iOS platforms.",
+    tags: ["React Native", "Swift", "Kotlin"],
     icon: React.createElement(CgWorkAlt),
   },
   {
     title: "E-commerce Development",
     description:
       "We build online stores that are fast, secure, and easy to manage.",
-    tags: ["WordPress", "Shopify", "Wix"],
+    tags: ["WordPress", "WooCommerce", "Magento"],
     icon: React.createElement
   },
   {
@@ -93,14 +93,14 @@ export const servicesData = [
   {
     title: "Graphic Design",
     description:
-      "We create stunning visuals that help businesses stand out from the competition.",
-    tags: ["Brand Identity", "Logo Design", "UI/UX Design", "Illustrations",],
+      "We deliver stunning visuals that help businesses stand out from the competition.",
+    tags: ["Brand Identity","Illustrations", "Logo Design",  "UI/UX Design"],
     icon: React.createElement
   },
   {
     title: "Animation & Video",
     description:
-      "We create animations and videos that bring your brand to life.",
+      "We produce animations and videos that bring your brand to life and engage your audience.",
     tags: ["Motion Graphics", "2D Animation", "3D Animation", "Video Editing"],
 
     icon: React.createElement
@@ -165,6 +165,7 @@ export const projectsData = [
 export const reviewsData = [
   {
     name: "Osman Malik",
+    organization: "Radio Deeshak",
     comment: "I am very satisfied with the work done by Sakia Labs. They exceeded my expectations and I would highly recommend them to anyone looking for a reliable tech partner.",
     rating: 5,
     date: "2024-05-14",
@@ -172,6 +173,7 @@ export const reviewsData = [
   },
   {
     name: "Nabeel Musa",
+    organization: "Nabeel Barber Shop",
     comment: "It was a great experience working with the team at Sakia Labs. They were very professional and delivered the project on time.",
     rating: 4.5,
     date: "2023-08-02",
