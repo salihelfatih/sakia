@@ -1,7 +1,13 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+  TargetAndTransition,
+} from "framer-motion";
 import SectionHeading from "./heading";
 import { useSectionInView } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
@@ -31,6 +37,8 @@ export default function Contact() {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [toast, setToast] = useState({ message: "", type: "" });
+  const [clickCount, setClickCount] = useState(0);
+  const [toastTimer, setToastTimer] = useState<NodeJS.Timeout | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: componentRef,
@@ -40,6 +48,12 @@ export default function Contact() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const rotateX = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimer) clearTimeout(toastTimer);
+    };
+  }, [toastTimer]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -63,7 +77,13 @@ export default function Contact() {
 
   const showToast = (message: string, type: string) => {
     setToast({ message, type });
-    setTimeout(() => setToast({ message: "", type: "" }), 5000);
+    setClickCount((prev) => prev + 1);
+    if (toastTimer) clearTimeout(toastTimer);
+    const newTimer = setTimeout(() => {
+      setToast({ message: "", type: "" });
+      setClickCount(0);
+    }, 5000);
+    setToastTimer(newTimer);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -92,6 +112,11 @@ export default function Contact() {
     transition-all duration-300
     outline-none 
     focus:ring-2 focus:ring-blue-500`;
+
+  const shakeAnimation: TargetAndTransition = {
+    x: [0, -5, 5, -5, 5, 0],
+    transition: { duration: 0.4, repeat: 2, repeatType: "reverse" as const },
+  };
 
   return (
     <section
@@ -179,16 +204,33 @@ export default function Contact() {
           </form>
         </div>
       </motion.div>
-      {toast.message && (
-        <div
-          className={`fixed bottom-4 left-4 p-4 rounded-lg text-white ${
-            toast.type === "success" ? "bg-green-500" : "bg-red-500"
-          }`}
-          style={{ zIndex: 1000 }}
-        >
-          {toast.message}
-        </div>
-      )}
+      <AnimatePresence>
+        {toast.message && (
+          <motion.div
+            key={clickCount}
+            initial={{ opacity: 0, y: 50, x: -50 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            exit={{ opacity: 0, y: 50, x: -50 }}
+            transition={{ duration: 0.3 }}
+            className={`fixed bottom-4 left-4 p-3 rounded-lg text-white text-sm ${
+              toast.type === "success" ? "bg-green-500" : "bg-red-500"
+            }`}
+            style={{ zIndex: 1000 }}
+          >
+            <motion.div
+              animate={clickCount > 1 ? shakeAnimation : {}}
+              onAnimationComplete={() => {
+                if (clickCount > 1) {
+                  setToast({ message: "", type: "" });
+                  setClickCount(0);
+                }
+              }}
+            >
+              {toast.message}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
