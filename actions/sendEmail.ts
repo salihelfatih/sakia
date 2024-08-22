@@ -63,10 +63,21 @@ export const sendEmail = async (formData: FormData) => {
     subject = "New Message from Contact Form";
   }
 
-  const verifiedEmail = process.env.SENDGRID_VERIFIED_SENDER!;
+  const verifiedEmail = process.env.SENDGRID_VERIFIED_SENDER;
+  const recipientEmail = process.env.RECIPIENT_EMAIL || verifiedEmail;
+
+  if (!verifiedEmail) {
+    console.error("SENDGRID_VERIFIED_SENDER is not set in environment variables");
+    return { error: "Email configuration error" };
+  }
+
+  if (!recipientEmail) {
+    console.error("Recipient email is not set");
+    return { error: "Email configuration error" };
+  }
 
   const msg = {
-    to: verifiedEmail,
+    to: recipientEmail,
     from: verifiedEmail,
     subject: subject,
     html: htmlContent,
