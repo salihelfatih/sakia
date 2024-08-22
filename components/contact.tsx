@@ -82,7 +82,7 @@ export default function Contact() {
       return;
     }
 
-    showToast("Message sent successfully!", "success");
+    showToast("We'll be in touch soon!", "success");
     setFormData({ name: "", email: "", message: "" });
   };
 

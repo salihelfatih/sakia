@@ -14,21 +14,9 @@ import Magnetic from "@/components/magnetic";
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
-  const [language, setLanguage] = useState("English");
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [showClientDialog, setShowClientDialog] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const languageDropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
-
-  const toggleLanguageDropdown = () => {
-    setShowLanguageDropdown(!showLanguageDropdown);
-  };
-
-  const changeLanguage = (lang: string) => {
-    setLanguage(lang);
-    setShowLanguageDropdown(false);
-  };
 
   const handleLogoClick = () => {
     window.scrollTo({
@@ -46,12 +34,6 @@ export default function Header() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        languageDropdownRef.current &&
-        !languageDropdownRef.current.contains(event.target as Node)
-      ) {
-        setShowLanguageDropdown(false);
-      }
       if (
         mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target as Node)
@@ -149,7 +131,7 @@ export default function Header() {
       </nav>
 
       <motion.div
-        className="fixed top-[0.75rem] right-[8rem] lg:top-[1.7rem] lg:right-[8rem] hidden lg:block"
+        className="fixed top-[0.75rem] right-[4.5rem] lg:top-[1.7rem] lg:right-[1rem] h-10"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
@@ -161,54 +143,6 @@ export default function Header() {
             Become a Client
           </button>
         </Magnetic>
-      </motion.div>
-
-      <motion.div
-        className="fixed top-[0.75rem] right-[4.5rem] lg:top-[1.7rem] lg:right-[1rem] h-10"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        ref={languageDropdownRef}
-      >
-        <div className="relative h-full">
-          <Magnetic>
-            <button
-              onClick={toggleLanguageDropdown}
-              className={`${buttonClasses} ${
-                showLanguageDropdown ? "bg-gray-200 dark:bg-gray-800" : ""
-              }`}
-            >
-              {language}
-            </button>
-          </Magnetic>
-          <AnimatePresence mode="wait">
-            {showLanguageDropdown && (
-              <motion.ul
-                className="absolute top-full right-0 mt-2 py-2 w-32 bg-white rounded-md shadow-xl z-20"
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-              >
-                {["English", "Arabic"].map((lang, index) => (
-                  <motion.li
-                    key={lang}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2, delay: index * 0.05 }}
-                  >
-                    <button
-                      onClick={() => changeLanguage(lang)}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                    >
-                      {lang}
-                    </button>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            )}
-          </AnimatePresence>
-        </div>
       </motion.div>
 
       <motion.div

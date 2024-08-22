@@ -150,7 +150,7 @@ export const projectsData = [
       "A music streaming platform that allows users to listen to their favorite songs.",
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     imageUrl: project2,
-    link: "https:/deeshak.com",
+    link: "https://deeshak.com",
   },
   {
     title: "Nabeel Barber Shop",

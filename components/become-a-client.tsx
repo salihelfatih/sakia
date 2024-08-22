@@ -120,7 +120,7 @@ const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
     if (result.error) {
       showToast(result.error, "error");
     } else {
-      showToast("Application submitted successfully!", "success");
+      showToast("We'll be in touch soon!", "success");
       setFormData(initialFormData);
       setTimeout(onClose, 2000);
     }

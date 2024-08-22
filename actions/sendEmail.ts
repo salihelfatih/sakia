@@ -1,12 +1,9 @@
 "use server";
 
-import React from "react";
-import { Resend } from "resend";
+import sgMail from "@sendgrid/mail";
 import { validateString, validateEmail, validatePhone, getErrorMessage } from "@/lib/utils";
-import ContactFormEmail from "@/email/contact-form-email";
-import BecomeClientEmail from "@/email/become-client-email";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 export const sendEmail = async (formData: FormData) => {
   const formType = formData.get("formType") as string;
@@ -25,8 +22,8 @@ export const sendEmail = async (formData: FormData) => {
     return { error: "Message should be between 1 and 5000 characters" };
   }
 
-  let emailComponent;
-  let subject;
+  let htmlContent: string;
+  let subject: string;
 
   if (formType === "becomeClient") {
     const phone = formData.get("phone") as string;
@@ -44,35 +41,43 @@ export const sendEmail = async (formData: FormData) => {
       return { error: "Please select at least one service" };
     }
 
-    emailComponent = React.createElement(BecomeClientEmail, {
-      name,
-      email,
-      phone,
-      organization,
-      services,
-      message,
-    });
-    subject = "New client application";
+    htmlContent = `
+      <h1>New Client Application</h1>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Organization:</strong> ${organization}</p>
+      <p><strong>Services:</strong> ${services.join(", ")}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message}</p>
+    `;
+    subject = "New Client Application";
   } else {
-    emailComponent = React.createElement(ContactFormEmail, {
-      name,
-      email,
-      message,
-    });
-    subject = "New message from contact form";
+    htmlContent = `
+      <h1>Contact Form Submission</h1>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message}</p>
+    `;
+    subject = "New Message from Contact Form";
   }
 
-  try {
-    const data = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: "hello@sakialabs.io",
-      subject: subject,
-      reply_to: email,
-      react: emailComponent,
-    });
+  const verifiedEmail = process.env.SENDGRID_VERIFIED_SENDER!;
 
-    return { data };
+  const msg = {
+    to: verifiedEmail,
+    from: verifiedEmail,
+    subject: subject,
+    html: htmlContent,
+    replyTo: email,
+  };
+
+  try {
+    await sgMail.send(msg);
+    return { data: "Email sent successfully" };
   } catch (error: unknown) {
+    console.error("SendGrid error:", error);
     return {
       error: getErrorMessage(error),
     };
