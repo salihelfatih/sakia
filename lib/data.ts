@@ -1,4 +1,5 @@
 import React from "react";
+import { StaticImageData } from "next/image";
 import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import client1 from "@/public/avatars/client1.jpg";
@@ -19,8 +20,8 @@ export const links = [
     hash: "#home",
   },
   {
-    name: "Services",
-    hash: "#services",
+    name: "Packages",
+    hash: "#packages",
   },
   {
     name: "About Us",
@@ -40,72 +41,118 @@ export const links = [
   },
 ] as const;
 
-export const servicesData = [
+export const packageData = [
   {
-    title: "Frontend Development",
-    description:
-      "We craft responsive and user-friendly websites using modern technologies.",
-    tags: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Material UI", "Framer Motion", "GSAP"],
-    icon: React.createElement(FaReact),
+    title: "Starter",
+    description: "Perfect for small businesses just getting started.",
+    price: "$1,499",
+    features: [
+      "Frontend Development",
+      "E-commerce Integration",
+      "Basic SEO",
+      "Logo Design",
+      "Social Media Integration",
+      "1 month of support"
+    ],
   },
   {
-    title: "API Development",
-    description:
-      "We build APIs that are fast, reliable, and easy to integrate with other services.",
-    tags: ["Node.js", "Express", "ASP.NET", "Django", "Laravel", "Spring Boot", "Ruby on Rails"],
-    icon: React.createElement
+    title: "Growth",
+    description: "Ideal for businesses looking to expand their online presence.",
+    price: "$2,999",
+    features: [
+      "All Starter features",
+      "Backend Development",
+      "Database Design",
+      "Advanced SEO",
+      "Brand Identity Package",
+      "3 months of support"
+    ],
   },
   {
-    title: "Database Design",
-    description:
-      "We design databases that are optimized for performance and scalability.",
-    tags: ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Firebase"],
-    icon: React.createElement
+    title: "Enterprise",
+    description: "Comprehensive solution for large-scale projects.",
+    price: "$5,999",
+    features: [
+      "All Growth features",
+      "Mobile App Development",
+      "Advanced Database Solutions",
+      "Machine Learning Integration",
+      "Motion Graphics & Animations",
+      "6 months of premium support"
+    ],
   },
+] as const;
+
+export const expertiseAreas = [
   {
-    title: "Machine Learning",
-    description:
-      "We implement machine learning models that help make data-driven decisions.",
-    tags: ["Python", "PyTorch", "Scikit-learn"],
-    icon: React.createElement
+    title: "Web Development",
+    description: "We craft secure and responsive web aplications using modern technologies.",
+    services: [
+      "Frontend Development",
+      "Backend Development",
+      // "Full-stack Development",
+      "Database Design",
+      "Content Management Systems",
+      "E-commerce Solutions"
+    ],
+    technologies: [
+      "React", "Next.js", "Vue.js", "Node.js", "Express", "ASP.NET", "Django", 
+      "Laravel", "Spring Boot", "Ruby on Rails", "PostgreSQL", "MySQL",
+      "MongoDB", "Firebase", "WordPress", "WooCommerce", "Stripe", "PayPal"
+    ]
+
   },
   {
     title: "Mobile Development",
-    description:
-      "We develop mobile applications for both Android and iOS platforms.",
-    tags: ["React Native", "Swift", "Kotlin"],
-    icon: React.createElement(CgWorkAlt),
+    description: "We develop mobile applications for both Android and iOS platforms.",
+    services: [
+      "iOS App Development",
+      "Android App Development",
+      "Cross-platform Development"
+    ],
+    technologies: ["Swift", "Kotlin", "React Native"]
   },
   {
-    title: "E-commerce Development",
-    description:
-      "We build online stores that are fast, secure, and easy to manage.",
-    tags: ["WordPress", "WooCommerce", "Magento"],
-    icon: React.createElement
+    title: "Machine Learning",
+    description: "We implement machine learning models that help make data-driven decisions.",
+    services: [
+      "Predictive Modeling",
+      "Data Analysis and Visualization",
+      "Computer Vision"
+    ],
+    technologies: ["Python", "PyTorch", "Scikit-learn"]
   },
   {
-    title: "SEO & Marketing",
-    description:
-      "We help businesses rank higher on search engines and reach more customers.",
-    tags: ["Google Ads", "Facebook Ads", "Social Media Marketing"],
-    icon: React.createElement
+    title: "Digital Marketing",
+    description: "We help businesses rank higher on search engines and reach more customers.",
+    services: [
+      "Search Engine Optimization (SEO)",
+      "Content Marketing",
+      "Paid Advertising"
+    ],
+    technologies: ["Google Ads", "Social Media Ads"]
   },
   {
-    title: "Graphic Design",
-    description:
-      "We deliver stunning visuals that help businesses stand out from the competition.",
-    tags: ["Brand Identity","Illustrations", "Logo Design",  "UI/UX Design"],
-    icon: React.createElement
+    title: "Design Services",
+    description: "We deliver stunning visuals that help businesses stand out from the competition.",
+    services: [
+      "Brand Identity Design",
+      "Logo Design",
+      "UI/UX Design",
+    ],
+    technologies: ["Photoshop", "Illustrator", "Figma", ]
   },
   {
-    title: "Animation & Video",
-    description:
-      "We produce animations and videos that bring your brand to life and engage your audience.",
-    tags: ["Motion Graphics", "2D Animation", "3D Animation", "Video Editing"],
-
-    icon: React.createElement
-  }
-] as const;
+    title: "Animation Services",
+    description: "We deliver stunning visuals that help businesses stand out from the competition.",
+    services: [
+      "Motion Graphics",
+      "2D Animation",
+      "3D Animation",
+    ],
+    technologies: ["Blender", "Maya", "Toon Boom"]
+  },
+];
 
 export const valuesData = [
   {
@@ -158,7 +205,7 @@ export const projectsData = [
       "A website for a barber shop that allows customers to book appointments online.",
     tags: ["WordPress", "Elementor", "WooCommerce", "SEO"],
     imageUrl: project1,
-    link: "https://nabeelbarber.ca",
+    link: "https://nabeelbarber.shop",
   },
 ] as const;
 

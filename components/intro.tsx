@@ -221,7 +221,10 @@ export default function Intro() {
               onClick={() => setShowClientDialog(false)}
             ></div>
             <div className="bg-white p-6 sm:p-8 rounded-lg relative z-[1001] max-w-md w-full m-4">
-              <BecomeClientDialog onClose={() => setShowClientDialog(false)} />
+              <BecomeClientDialog
+                onClose={() => setShowClientDialog(false)}
+                initialPackage={""}
+              />
             </div>
           </motion.div>
         )}

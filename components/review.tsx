@@ -75,7 +75,7 @@ export default function Review({
       }}
       className="group mb-3 sm:mb-8 last:mb-0 w-full sm:w-[calc(50%-1rem)] max-w-[24rem]"
     >
-      <section className="bg-gray-100 border border-black/5 rounded-lg overflow-hidden relative h-[280px] hover:bg-gray-200 transition dark:text-white dark:bg-white/10 dark:hover:bg-white/20 flex flex-col shadow-md">
+      <section className="bg-gray-100 border border-black/5 rounded-lg overflow-hidden relative h-[280px] hover:bg-gray-200 transition dark:text-white dark:bg-white/10 dark:hover:bg-white/20 flex flex-col shadow-sm">
         <div className="p-6 flex flex-col h-full">
           <div className="flex items-center mb-4">
             <div className="w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0">

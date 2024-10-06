@@ -28,7 +28,7 @@ export const sendEmail = async (formData: FormData) => {
   if (formType === "becomeClient") {
     const phone = formData.get("phone") as string;
     const organization = formData.get("organization") as string;
-    const services = formData.getAll("services") as string[];
+    const selectedPackage = formData.get("package") as string;
 
     // Additional validations for "Become a Client" form
     if (!validatePhone(phone)) {
@@ -37,8 +37,8 @@ export const sendEmail = async (formData: FormData) => {
     if (!validateString(organization, 1, 100)) {
       return { error: "Organization name should be between 1 and 100 characters" };
     }
-    if (services.length === 0) {
-      return { error: "Please select at least one service" };
+    if (!validateString(selectedPackage, 1, 100)) {
+      return { error: "Please select a package" };
     }
 
     htmlContent = `
@@ -47,7 +47,7 @@ export const sendEmail = async (formData: FormData) => {
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone}</p>
       <p><strong>Organization:</strong> ${organization}</p>
-      <p><strong>Services:</strong> ${services.join(", ")}</p>
+      <p><strong>Selected Package:</strong> ${selectedPackage}</p>
       <p><strong>Message:</strong></p>
       <p>${message}</p>
     `;

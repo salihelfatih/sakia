@@ -3,10 +3,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import {
   motion,
-  useScroll,
-  useTransform,
+  useInView,
+  useAnimationControls,
   AnimatePresence,
-  TargetAndTransition,
 } from "framer-motion";
 import SectionHeading from "./heading";
 import { useSectionInView } from "@/lib/hooks";
@@ -22,9 +21,61 @@ type FormErrors = {
   [key in keyof FormData]?: string;
 };
 
+const AnimatedSentence = ({ children }: { children: string }) => {
+  const controls = useAnimationControls();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      controls.start("visible");
+      setHasAnimated(true);
+    }
+  }, [isInView, controls, hasAnimated]);
+
+  const sentenceAnimation = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.03,
+      },
+    },
+  };
+
+  const letterAnimation = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 200,
+      },
+    },
+  };
+
+  return (
+    <motion.p
+      ref={ref}
+      className="text-gray-700 mb-4 dark:text-white/80"
+      initial="hidden"
+      animate={controls}
+      variants={sentenceAnimation}
+    >
+      {children.split("").map((char, index) => (
+        <motion.span key={`${char}-${index}`} variants={letterAnimation}>
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </motion.p>
+  );
+};
+
 export default function Contact() {
-  const ref = useSectionInView("Contact Us");
-  const componentRef = useRef<HTMLDivElement>(null);
+  const ref = useSectionInView("Contact Us", 0.5);
 
   const sentence =
     "We'd love to hear from you. Please fill out the form below.";
@@ -39,15 +90,6 @@ export default function Contact() {
   const [toast, setToast] = useState({ message: "", type: "" });
   const [clickCount, setClickCount] = useState(0);
   const [toastTimer, setToastTimer] = useState<NodeJS.Timeout | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: componentRef,
-    offset: ["start end", "center center"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
   useEffect(() => {
     return () => {
@@ -113,46 +155,28 @@ export default function Contact() {
     outline-none 
     focus:ring-2 focus:ring-blue-500`;
 
-  const shakeAnimation: TargetAndTransition = {
-    x: [0, -5, 5, -5, 5, 0],
-    transition: { duration: 0.4, repeat: 2, repeatType: "reverse" as const },
-  };
-
   return (
-    <section
-      id="contact"
+    <motion.section
       ref={ref}
-      className="mb-20 sm:mb-28 w-full text-center overflow-hidden"
+      id="contact"
+      className="mb-20 sm:mb-28 w-full text-center overflow-hidden scroll-mt-28"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: false }}
     >
       <SectionHeading>Contact us</SectionHeading>
 
-      <motion.p
-        className="text-gray-700 mb-4 dark:text-white/80"
-        initial="hidden"
-        animate="visible"
-      >
-        {sentence.split("").map((char, index) => (
-          <motion.span
-            key={`${char}-${index}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.03, delay: index * 0.03 }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
-      </motion.p>
+      <AnimatedSentence>{sentence}</AnimatedSentence>
+
       <motion.div
-        ref={componentRef}
         className="max-w-[45rem] mx-auto"
-        style={{
-          opacity,
-          rotateX,
-          scale,
-          transformPerspective: "1000px",
-        }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.5 }}
       >
-        <div className="bg-gray-100 border border-black/5 rounded-lg overflow-hidden relative hover:bg-gray-200 transition dark:text-white dark:bg-white/10 dark:hover:bg-white/20 p-6">
+        <div className="bg-gray-100 border border-black/5 rounded-lg overflow-hidden relative hover:bg-gray-200 transition dark:text-white dark:bg-white/10 dark:hover:bg-white/20 p-6 shadow-sm">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <input
               className={`${inputClasses} h-14`}
@@ -204,6 +228,7 @@ export default function Contact() {
           </form>
         </div>
       </motion.div>
+
       <AnimatePresence>
         {toast.message && (
           <motion.div
@@ -217,20 +242,10 @@ export default function Contact() {
             }`}
             style={{ zIndex: 1000 }}
           >
-            <motion.div
-              animate={clickCount > 1 ? shakeAnimation : {}}
-              onAnimationComplete={() => {
-                if (clickCount > 1) {
-                  setToast({ message: "", type: "" });
-                  setClickCount(0);
-                }
-              }}
-            >
-              {toast.message}
-            </motion.div>
+            {toast.message}
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </motion.section>
   );
 }

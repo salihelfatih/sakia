@@ -1,10 +1,11 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { motion, AnimatePresence, TargetAndTransition } from "framer-motion";
-import { CheckCircle, X } from "lucide-react";
+import { Check, X, ChevronDown, ChevronUp } from "lucide-react";
 import { sendEmail } from "@/actions/sendEmail";
 
 interface BecomeClientDialogProps {
   onClose: () => void;
+  initialPackage: string;
 }
 
 interface FormData {
@@ -12,7 +13,7 @@ interface FormData {
   email: string;
   phone: string;
   organization: string;
-  services: string[];
+  package: string;
   message: string;
 }
 
@@ -20,24 +21,46 @@ type FormErrors = {
   [key in keyof FormData]?: string;
 };
 
-const services = [
-  "Frontend Development",
-  "API Development",
-  "Database Design",
-  "Machine Learning",
-  "Mobile Development",
-  "E-commerce Development",
-  "SEO & Marketing",
-  "Graphic Design",
-  "Animation & Video",
-];
+const packageData = [
+  {
+    title: "Starter",
+    price: "$1,499",
+    description: "Perfect for small businesses just getting started.",
+    keyFeatures: [
+      "Frontend Development",
+      "E-commerce Integration",
+      "Basic SEO",
+    ],
+  },
+  {
+    title: "Growth",
+    price: "$2,999",
+    description:
+      "Ideal for businesses looking to expand their online presence.",
+    keyFeatures: [
+      "All Starter features",
+      "Backend Development",
+      "Advanced SEO",
+    ],
+  },
+  {
+    title: "Enterprise",
+    price: "$5,999",
+    description: "Comprehensive solution for large-scale projects.",
+    keyFeatures: [
+      "All Growth features",
+      "Mobile App Development",
+      "Machine Learning Integration",
+    ],
+  },
+] as const;
 
 const initialFormData: FormData = {
   name: "",
   email: "",
   phone: "",
   organization: "",
-  services: [],
+  package: "",
   message: "",
 };
 
@@ -50,12 +73,19 @@ const bounceVariant = {
   }),
 };
 
-const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
-  const [formData, setFormData] = useState<FormData>(initialFormData);
+const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({
+  onClose,
+  initialPackage,
+}) => {
+  const [formData, setFormData] = useState<FormData>({
+    ...initialFormData,
+    package: initialPackage,
+  });
   const [errors, setErrors] = useState<FormErrors>({});
   const [toast, setToast] = useState({ message: "", type: "" });
   const [clickCount, setClickCount] = useState(0);
   const [toastTimer, setToastTimer] = useState<NodeJS.Timeout | null>(null);
+  const [expandedPackage, setExpandedPackage] = useState<string | null>(null);
 
   useEffect(() => {
     return () => {
@@ -64,19 +94,10 @@ const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
   }, [toastTimer]);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleCheckboxChange = (service: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      services: prev.services.includes(service)
-        ? prev.services.filter((s) => s !== service)
-        : [...prev.services, service],
-    }));
   };
 
   const validateForm = (): boolean => {
@@ -90,8 +111,7 @@ const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
       newErrors.phone = "Invalid phone number";
     if (!formData.organization.trim())
       newErrors.organization = "Organization name is required";
-    if (formData.services.length === 0)
-      newErrors.services = "Please select at least one service";
+    if (!formData.package) newErrors.package = "Please select a package";
     if (!formData.message.trim()) newErrors.message = "Message is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -126,6 +146,10 @@ const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
     }
   };
 
+  const togglePackageDetails = (packageTitle: string) => {
+    setExpandedPackage(expandedPackage === packageTitle ? null : packageTitle);
+  };
+
   const inputClasses = `w-full h-10 px-3 rounded-md borderBlack 
     bg-white dark:bg-gray-800 text-black dark:text-white 
     transition-all duration-300 outline-none 
@@ -138,7 +162,7 @@ const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1001]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -257,39 +281,70 @@ const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
             custom={3}
           >
             <div className="mb-3">
-              <h3 className="text-base font-semibold mb-2">Services</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {services.map((service) => (
-                  <label
-                    key={service}
-                    className={`flex items-center gap-2 p-2 rounded-md border transition-colors text-xs ${
-                      formData.services.includes(service)
+              <h3 className="text-base font-semibold mb-2">Choose a Package</h3>
+              <div className="space-y-2">
+                {packageData.map((pkg) => (
+                  <div
+                    key={pkg.title}
+                    className={`border rounded-lg transition-colors ${
+                      formData.package === pkg.title
                         ? "bg-blue-100 border-blue-300 dark:bg-blue-900 dark:border-blue-700"
                         : "bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-600"
                     }`}
                   >
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value={service}
-                      className="hidden"
-                      checked={formData.services.includes(service)}
-                      onChange={() => handleCheckboxChange(service)}
-                    />
-                    <CheckCircle
-                      className={`w-4 h-4 ${
-                        formData.services.includes(service)
-                          ? "text-blue-500"
-                          : "text-gray-400"
-                      }`}
-                    />
-                    <span className="text-xs">{service}</span>
-                  </label>
+                    <label className="flex items-center justify-between p-3 cursor-pointer">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          name="package"
+                          value={pkg.title}
+                          checked={formData.package === pkg.title}
+                          onChange={handleChange}
+                          className="mr-2"
+                        />
+                        <span className="font-medium">{pkg.title}</span>
+                      </div>
+                      <span className="font-bold">{pkg.price}</span>
+                    </label>
+                    <div className="px-3 pb-3">
+                      <p className="text-sm mb-1">{pkg.description}</p>
+                      <button
+                        type="button"
+                        onClick={() => togglePackageDetails(pkg.title)}
+                        className="text-blue-500 text-sm flex items-center"
+                      >
+                        {expandedPackage === pkg.title ? (
+                          <>
+                            <ChevronUp size={16} className="mr-1" /> Hide
+                            details
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown size={16} className="mr-1" /> Show
+                            details
+                          </>
+                        )}
+                      </button>
+                      {expandedPackage === pkg.title && (
+                        <ul className="mt-2 text-sm">
+                          {pkg.keyFeatures.map((feature, index) => (
+                            <li
+                              key={index}
+                              className="flex items-center gap-1 mb-1"
+                            >
+                              <Check className="w-3 h-3 text-green-500" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
-            {errors.services && (
-              <p className="text-red-500 text-xs mt-1">{errors.services}</p>
+            {errors.package && (
+              <p className="text-red-500 text-xs mt-1">{errors.package}</p>
             )}
           </motion.div>
 
@@ -340,7 +395,7 @@ const BecomeClientDialog: React.FC<BecomeClientDialogProps> = ({ onClose }) => {
             className={`fixed bottom-4 left-4 p-3 rounded-lg text-white text-sm ${
               toast.type === "success" ? "bg-green-500" : "bg-red-500"
             }`}
-            style={{ zIndex: 1000 }}
+            style={{ zIndex: 1002 }}
           >
             <motion.div
               animate={clickCount > 1 ? shakeAnimation : {}}

@@ -248,7 +248,10 @@ export default function Header() {
 
       <AnimatePresence>
         {showClientDialog && (
-          <BecomeClientDialog onClose={() => setShowClientDialog(false)} />
+          <BecomeClientDialog
+            onClose={() => setShowClientDialog(false)}
+            initialPackage={""}
+          />
         )}
       </AnimatePresence>
     </header>
