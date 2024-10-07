@@ -166,7 +166,11 @@ export default function Intro() {
             <Magnetic>
               <button
                 onClick={() => setShowClientDialog(true)}
-                className="bg-gray-800 text-white px-6 py-3 sm:px-7 sm:py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-850 active:scale-105 transition mb-3 text-base sm:text-lg"
+                className="px-6 py-3 sm:px-7 bg-gray-100 border border-black/5 hover:bg-gray-200
+                dark:text-white dark:bg-white/10 dark:hover:bg-white/20 shadow-sm 
+                font-semibold whitespace-nowrap sm:py-3 flex items-center gap-2 rounded-full 
+                outline-none focus:scale-110 hover:scale-110 hover:bg-gray-850 active:scale-105 transition 
+                mb-3 text-base sm:text-lg"
               >
                 Become a Client
               </button>
@@ -194,7 +198,10 @@ export default function Intro() {
               ].map((item, index) => (
                 <Magnetic key={index}>
                   <a
-                    className="bg-white p-2 sm:p-3 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+                    className="bg-white hover:bg-gray-200 p-2 sm:p-3 text-gray-700
+                    hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] 
+                    hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack
+                    dark:bg-white/10 dark:text-white/60  dark:hover:bg-white/20"
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"

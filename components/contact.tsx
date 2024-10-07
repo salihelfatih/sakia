@@ -60,14 +60,22 @@ const AnimatedSentence = ({ children }: { children: string }) => {
   return (
     <motion.p
       ref={ref}
-      className="text-gray-700 mb-4 dark:text-white/80"
+      className="text-gray-700 mb-8 dark:text-white/80 max-w-[45rem] mx-auto text-center px-4 sm:px-6 md:px-8 text-sm sm:text-base md:text-lg leading-relaxed"
       initial="hidden"
       animate={controls}
       variants={sentenceAnimation}
     >
-      {children.split("").map((char, index) => (
-        <motion.span key={`${char}-${index}`} variants={letterAnimation}>
-          {char === " " ? "\u00A0" : char}
+      {children.split(" ").map((word, wordIndex) => (
+        <motion.span key={`word-${wordIndex}`} className="inline-block mr-1">
+          {word.split("").map((char, charIndex) => (
+            <motion.span
+              key={`${char}-${charIndex}`}
+              variants={letterAnimation}
+              className="inline-block"
+            >
+              {char}
+            </motion.span>
+          ))}
         </motion.span>
       ))}
     </motion.p>
@@ -78,7 +86,7 @@ export default function Contact() {
   const ref = useSectionInView("Contact Us", 0.5);
 
   const sentence =
-    "We'd love to hear from you. Please fill out the form below.";
+    "We'd love to hear from you! Please fill out the form below.";
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -159,7 +167,7 @@ export default function Contact() {
     <motion.section
       ref={ref}
       id="contact"
-      className="mb-20 sm:mb-28 w-full text-center overflow-hidden scroll-mt-28"
+      className="mb-20 sm:mb-28 w-full scroll-mt-28 flex flex-col items-center"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -170,7 +178,7 @@ export default function Contact() {
       <AnimatedSentence>{sentence}</AnimatedSentence>
 
       <motion.div
-        className="max-w-[45rem] mx-auto"
+        className="w-full max-w-[45rem] px-4 sm:px-6 md:px-8"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -221,7 +229,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="group flex items-center justify-center gap-2 h-[3rem] w-[8rem] bg-gray-900 text-white rounded-full outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 disabled:scale-100 disabled:bg-opacity-65 self-center"
+              className="group flex items-center justify-center gap-2 h-[3rem] w-[8rem] bg-gray-900 text-white rounded-full outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 disabled:scale-100 disabled:bg-opacity-65 mx-auto"
             >
               Send
             </button>

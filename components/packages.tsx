@@ -62,7 +62,7 @@ export default function Packages() {
   };
 
   const buttonClasses =
-    "w-48 h-12 bg-gray-100 border border-black/5 rounded-full overflow-hidden relative hover:bg-gray-200 transition dark:text-white dark:bg-white/10 dark:hover:bg-white/20 shadow-sm px-4 py-2 font-semibold text-base whitespace-nowrap";
+    "px-4 py-2 bg-gray-100 border border-black/5 hover:bg-gray-200 dark:text-white dark:bg-white/10 dark:hover:bg-white/20 shadow-sm font-semibold text-xs sm:text-sm whitespace-nowrap rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-850 active:scale-105 transition";
 
   return (
     <motion.section
@@ -91,12 +91,11 @@ export default function Packages() {
         transition={{ duration: 0.8 }}
       >
         {packageData.map((pack, index) => (
-          <div
+          <Package
             key={index}
-            className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-[350px]"
-          >
-            <Package {...pack} onChoosePackage={handleChoosePackage} />
-          </div>
+            {...pack}
+            onChoosePackage={handleChoosePackage}
+          />
         ))}
       </motion.div>
 
@@ -110,7 +109,7 @@ export default function Packages() {
 
       <motion.div
         ref={buttonRef}
-        className="w-full mt-8 flex justify-center items-center flex-col sm:flex-row gap-4"
+        className="w-full mt-8 flex justify-center items-center gap-4"
         initial={{ opacity: 0, y: 20 }}
         animate={buttonInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -118,13 +117,16 @@ export default function Packages() {
         <Magnetic>
           <button
             onClick={() => setIsComparisonDialogOpen(true)}
-            className={buttonClasses}
+            className={`${buttonClasses} w-[160px] sm:w-[180px]`}
           >
             Compare Packages
           </button>
         </Magnetic>
         <Magnetic>
-          <button onClick={handleContactUs} className={buttonClasses}>
+          <button
+            onClick={handleContactUs}
+            className={`${buttonClasses} w-[120px] sm:w-[140px]`}
+          >
             Contact Us
           </button>
         </Magnetic>

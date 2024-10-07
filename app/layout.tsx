@@ -12,7 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Sakia Labs",
-  description: "Sakia Labs is a software development agency.",
+  description:
+    "Sakia Labs | Empowering people and businesses with robust and elegant solutions. ✨🚀",
 };
 
 export default function RootLayout({

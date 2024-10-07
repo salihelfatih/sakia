@@ -22,14 +22,14 @@ interface SocialIconProps {
 const SocialIcon: React.FC<SocialIconProps> = ({ Icon, href }) => (
   <Magnetic>
     <motion.a
-      className="bg-white bg-opacity-80 p-2 sm:p-3 text-gray-500 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:bg-gray-950 dark:bg-opacity-75 dark:text-gray-500 dark:hover:text-gray-300"
+      className="bg-white bg-opacity-80 p-2 text-gray-500 hover:text-gray-950 flex items-center justify-center rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:bg-gray-950 dark:bg-opacity-75 dark:text-gray-500 dark:hover:text-gray-300"
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <Icon size={18} className="sm:w-5 sm:h-5" />
+      <Icon size={18} />
     </motion.a>
   </Magnetic>
 );
@@ -57,11 +57,11 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-white bg-opacity-80 dark:bg-gray-950 dark:bg-opacity-75 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] border-t border-white border-opacity-40 dark:border-black/40">
-        <div className="container mx-auto py-8 px-4">
-          <div className="flex flex-wrap justify-between items-center">
+      <footer className="bg-white bg-opacity-80 dark:bg-gray-950 dark:bg-opacity-75 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] border-t border-white border-opacity-40 dark:border-black/40 mt-auto">
+        <div className="container mx-auto py-6 px-4">
+          <div className="flex flex-col space-y-6 md:flex-row md:justify-between md:items-center md:space-y-0">
             <motion.div
-              className="w-full md:w-1/3 mb-4 md:mb-0"
+              className="text-center md:text-left"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -70,52 +70,53 @@ export default function Footer() {
                 © {new Date().getFullYear()} Sakia Labs. All Rights Reserved.
               </p>
             </motion.div>
+
             <motion.div
-              className="w-full md:w-1/3 mb-4 md:mb-0"
+              className="flex justify-center space-x-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <div className="flex justify-center space-x-4">
-                <SocialIcon
-                  Icon={BsFacebook}
-                  href="https://facebook.com/sakialabs"
-                />
-                <SocialIcon
-                  Icon={BsTwitter}
-                  href="https://twitter.com/sakialabs"
-                />
-                <SocialIcon
-                  Icon={BsInstagram}
-                  href="https://instagram.com/sakialabs"
-                />
-                <SocialIcon
-                  Icon={BsTiktok}
-                  href="https://tiktok.com/@sakia.labs"
-                />
-                <SocialIcon
-                  Icon={BsLinkedin}
-                  href="https://www.linkedin.com/company/sakialabs"
-                />
-                <SocialIcon
-                  Icon={FaGithubSquare}
-                  href="https://github.com/sakialabs"
-                />
-              </div>
+              <SocialIcon
+                Icon={BsFacebook}
+                href="https://facebook.com/sakialabs"
+              />
+              <SocialIcon
+                Icon={BsTwitter}
+                href="https://twitter.com/sakialabs"
+              />
+              <SocialIcon
+                Icon={BsInstagram}
+                href="https://instagram.com/sakialabs"
+              />
+              <SocialIcon
+                Icon={BsTiktok}
+                href="https://tiktok.com/@sakia.labs"
+              />
+              <SocialIcon
+                Icon={BsLinkedin}
+                href="https://www.linkedin.com/company/sakialabs"
+              />
+              <SocialIcon
+                Icon={FaGithubSquare}
+                href="https://github.com/sakialabs"
+              />
             </motion.div>
+
             <motion.div
-              className="w-full md:w-1/3"
+              className="text-center md:text-right"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <p className="text-sm text-gray-600 dark:text-gray-400 text-center md:text-right">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Phone: +1 (437) 219-9433
                 <br />
                 Email: hello@sakialabs.io
               </p>
             </motion.div>
           </div>
+
           <motion.div
             className="mt-6 text-center"
             initial={{ opacity: 0, y: 20 }}

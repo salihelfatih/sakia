@@ -41,20 +41,20 @@ export default function Package({
         rotate,
         scale,
       }}
-      className="group max-w-[300px] w-full"
+      className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-[350px]"
     >
       <section className="bg-gray-100 h-full border border-black/5 rounded-lg overflow-hidden relative hover:bg-gray-200 transition dark:text-white dark:bg-white/10 dark:hover:bg-white/20 shadow-sm">
-        <div className="p-4 flex flex-col h-full">
+        <div className="p-5 flex flex-col h-full">
           <h3 className="text-xl font-semibold">{title}</h3>
           <p className="mt-2 text-sm leading-relaxed text-gray-700 dark:text-white/70">
             {description}
           </p>
           <p className="mt-4 text-2xl font-bold">{price}</p>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 space-y-2 flex-grow">
             {features.map((feature, index) => (
               <li key={index} className="flex items-center">
                 <svg
-                  className="w-4 h-4 mr-2 text-green-500"
+                  className="w-4 h-4 mr-2 text-green-500 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -71,14 +71,16 @@ export default function Package({
               </li>
             ))}
           </ul>
-          <button
-            onClick={() => onChoosePackage(title)}
-            className="mt-6 w-full py-2 px-4 rounded-lg font-semibold transition duration-300 ease-in-out
-             text-gray-200 bg-gray-900 hover:bg-gray-800 text-center shadow-sm
-            "
-          >
-            Choose {title}
-          </button>
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={() => onChoosePackage(title)}
+              className="py-2 px-4 rounded-full font-semibold text-sm transition duration-300 ease-in-out
+               text-white bg-gray-900 hover:bg-gray-800 hover:scale-105 active:scale-95 shadow-sm
+              "
+            >
+              Choose {title}
+            </button>
+          </div>
         </div>
       </section>
     </motion.div>
