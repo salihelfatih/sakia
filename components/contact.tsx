@@ -21,72 +21,34 @@ type FormErrors = {
   [key in keyof FormData]?: string;
 };
 
-const AnimatedSentence = ({ children }: { children: string }) => {
+const AnimatedParagraph = ({ children }: { children: React.ReactNode }) => {
   const controls = useAnimationControls();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
 
-  useEffect(() => {
-    if (isInView && !hasAnimated) {
-      controls.start("visible");
-      setHasAnimated(true);
+  React.useEffect(() => {
+    if (isInView) {
+      controls.start({ opacity: 1, y: 0 });
+    } else {
+      controls.start({ opacity: 0, y: 10 });
     }
-  }, [isInView, controls, hasAnimated]);
-
-  const sentenceAnimation = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-      },
-    },
-  };
-
-  const letterAnimation = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 200,
-      },
-    },
-  };
+  }, [isInView, controls]);
 
   return (
     <motion.p
       ref={ref}
       className="text-gray-700 mb-8 dark:text-white/80 max-w-[45rem] mx-auto text-center px-4 sm:px-6 md:px-8 text-sm sm:text-base md:text-lg leading-relaxed"
-      initial="hidden"
+      initial={{ opacity: 0, y: 10 }}
       animate={controls}
-      variants={sentenceAnimation}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {children.split(" ").map((word, wordIndex) => (
-        <motion.span key={`word-${wordIndex}`} className="inline-block mr-1">
-          {word.split("").map((char, charIndex) => (
-            <motion.span
-              key={`${char}-${charIndex}`}
-              variants={letterAnimation}
-              className="inline-block"
-            >
-              {char}
-            </motion.span>
-          ))}
-        </motion.span>
-      ))}
+      {children}
     </motion.p>
   );
 };
 
 export default function Contact() {
   const ref = useSectionInView("Contact Us", 0.5);
-
-  const sentence =
-    "We'd love to hear from you! Please fill out the form below.";
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -168,14 +130,17 @@ export default function Contact() {
       ref={ref}
       id="contact"
       className="mb-20 sm:mb-28 w-full scroll-mt-28 flex flex-col items-center"
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
       viewport={{ once: false }}
     >
       <SectionHeading>Contact us</SectionHeading>
 
-      <AnimatedSentence>{sentence}</AnimatedSentence>
+      <AnimatedParagraph>
+        We'd love to hear from you! Please fill out the form below.
+      </AnimatedParagraph>
 
       <motion.div
         className="w-full max-w-[45rem] px-4 sm:px-6 md:px-8"
@@ -229,7 +194,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="group flex items-center justify-center gap-2 h-[3rem] w-[8rem] bg-gray-900 text-white rounded-full outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 disabled:scale-100 disabled:bg-opacity-65 mx-auto"
+              className="group flex items-center justify-center gap-2 h-[3rem] w-[8rem] bg-white bg-opacity-80 border border-black/5 hover:bg-white hover:bg-opacity-100 dark:bg-gray-950 dark:bg-opacity-75 dark:hover:bg-opacity-100 shadow-sm font-semibold text-xs sm:text-sm whitespace-nowrap rounded-full outline-none focus:scale-110 active:scale-105 transition text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-100 disabled:scale-100 disabled:bg-opacity-65 mx-auto"
             >
               Send
             </button>

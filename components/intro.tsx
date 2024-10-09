@@ -166,11 +166,11 @@ export default function Intro() {
             <Magnetic>
               <button
                 onClick={() => setShowClientDialog(true)}
-                className="px-6 py-3 sm:px-7 bg-gray-100 border border-black/5 hover:bg-gray-200
-                dark:text-white dark:bg-white/10 dark:hover:bg-white/20 shadow-sm 
+                className="px-6 py-3 sm:px-7 bg-white bg-opacity-80 border border-black/5 hover:bg-white hover:bg-opacity-100 
+                dark:bg-gray-950 dark:bg-opacity-75 dark:hover:bg-opacity-100 shadow-sm 
                 font-semibold whitespace-nowrap sm:py-3 flex items-center gap-2 rounded-full 
-                outline-none focus:scale-110 hover:scale-110 hover:bg-gray-850 active:scale-105 transition 
-                mb-3 text-base sm:text-lg"
+                outline-none focus:scale-110 hover:scale-110 active:scale-105 transition 
+                mb-3 text-base sm:text-lg text-gray-950 dark:text-gray-100"
               >
                 Become a Client
               </button>
@@ -198,10 +198,10 @@ export default function Intro() {
               ].map((item, index) => (
                 <Magnetic key={index}>
                   <a
-                    className="bg-white hover:bg-gray-200 p-2 sm:p-3 text-gray-700
+                    className="bg-white bg-opacity-80 hover:bg-white hover:bg-opacity-100 p-2 sm:p-3 text-gray-500
                     hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] 
                     hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack
-                    dark:bg-white/10 dark:text-white/60  dark:hover:bg-white/20"
+                    dark:bg-gray-950 dark:bg-opacity-75 dark:text-gray-400 dark:hover:bg-opacity-100 dark:hover:text-gray-100"
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"

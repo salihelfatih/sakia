@@ -74,9 +74,7 @@ export default function Package({
           <div className="mt-6 flex justify-center">
             <button
               onClick={() => onChoosePackage(title)}
-              className="py-2 px-4 rounded-full font-semibold text-sm transition duration-300 ease-in-out
-               text-white bg-gray-900 hover:bg-gray-800 hover:scale-105 active:scale-95 shadow-sm
-              "
+              className="flex items-center justify-center px-4 py-2 rounded-full bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:bg-gray-950 dark:bg-opacity-75 text-gray-500 hover:text-gray-950 transition h-10 font-semibold text-sm hover:bg-white hover:bg-opacity-100  dark:hover:bg-opacity-100 sm:text-sm whitespace-nowrap outline-none focus:scale-110 active:scale-105 dark:text-gray-400 dark:hover:text-gray-100"
             >
               Choose {title}
             </button>

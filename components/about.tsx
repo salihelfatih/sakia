@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -103,18 +103,84 @@ function TeamMember({ name, role, image }: TeamMemberProps) {
   );
 }
 
-const AnimatedText = () => {
+const AnimatedParagraph = ({ children }: { children: React.ReactNode }) => {
+  const controls = useAnimationControls();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
-  const controls = useAnimationControls();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isInView) {
-      controls.start("visible");
+      controls.start({ opacity: 1, y: 0 });
+    } else {
+      controls.start({ opacity: 0, y: 10 });
     }
   }, [isInView, controls]);
 
+  return (
+    <motion.p
+      ref={ref}
+      className="text-base leading-relaxed"
+      initial={{ opacity: 0, y: 10 }}
+      animate={controls}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      {children}
+    </motion.p>
+  );
+};
+
+const AnimatedSlogan = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const controls = useAnimationControls();
+  const [hasAnimated, setHasAnimated] = useState(false);
+
   const slogan = "Inspired by Tradition, Driven by Innovation";
+
+  useEffect(() => {
+    if (isInView) {
+      if (!hasAnimated) {
+        controls.start("visible");
+        setHasAnimated(true);
+      } else {
+        controls.start({ opacity: 1, y: 0 });
+      }
+    } else {
+      controls.start({ opacity: 0, y: 10 });
+    }
+  }, [isInView, controls, hasAnimated]);
+
+  const sentenceAnimation = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.03,
+      },
+    },
+  };
+
+  const letterAnimation = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 200,
+      },
+    },
+  };
+
+  const fadeAnimation = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
   return (
     <motion.div
@@ -129,59 +195,29 @@ const AnimatedText = () => {
         className="text-xl italic mb-4 relative"
         initial="hidden"
         animate={controls}
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.03, delayChildren: 0.1 },
-          },
-        }}
+        variants={hasAnimated ? fadeAnimation : sentenceAnimation}
       >
         {slogan.split(" ").map((word, wordIndex) => (
-          <motion.span key={wordIndex} className="inline-block mr-[0.25em]">
-            {word.split("").map((letter, letterIndex) => (
-              <motion.span
-                key={letterIndex}
-                className="inline-block"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.5,
-                    },
-                  },
-                }}
-              >
-                {letter}
-              </motion.span>
-            ))}
+          <motion.span
+            key={`word-${wordIndex}`}
+            className="inline-block mr-1"
+            variants={hasAnimated ? undefined : letterAnimation}
+          >
+            {word}
           </motion.span>
         ))}
       </motion.h4>
 
-      <motion.div
-        className="mb-6 text-lg font-serif"
-        style={{ fontSize: "0.95rem" }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
+      <AnimatedParagraph>
         <strong>Sakia (SA-kee-yah)</strong> | <em>Arabic: </em>
         <strong>ساقية </strong> | <em>Waterwheel (n)</em>
         <br />
         <em>
           An ancient machine used for centuries to channel water for irrigation.
         </em>
-      </motion.div>
+      </AnimatedParagraph>
 
-      <motion.p
-        className="text-base leading-relaxed"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-      >
+      <AnimatedParagraph>
         At Sakia, the timeless waterwheel embodies the continuous flow of
         sustenance and life. Inspired by this profound symbol, we channel
         creativity and technology to craft digital solutions that uplift and
@@ -191,13 +227,14 @@ const AnimatedText = () => {
         <strong>create a lasting positive impact</strong>. Every project we
         undertake is a step towards <strong>creating value</strong>, and{" "}
         <strong>driving empowerment</strong> for communities and businesses.
-      </motion.p>
+      </AnimatedParagraph>
     </motion.div>
   );
 };
 
 export default function About() {
   const ref = useSectionInView("About Us");
+  const controls = useAnimationControls();
 
   const getGridColumns = () => {
     const teamSize = teamData.length;
@@ -211,22 +248,41 @@ export default function About() {
       ref={ref}
       id="about"
       className="mb-8 scroll-mt-28 text-center custom-scroll"
-      initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
       viewport={{ once: false }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
     >
       <div className="max-w-[60rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading size="large">About Us</SectionHeading>
-        <AnimatedText />
-        <SectionHeading size="medium">Our Core Values</SectionHeading>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.175 }}
+        >
+          <SectionHeading size="large">About Us</SectionHeading>
+        </motion.div>
+        <AnimatedSlogan />
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.175 }}
+        >
+          <SectionHeading size="medium">Our Core Values</SectionHeading>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 mb-16">
           {valuesData.map((value, index) => (
             <Value key={index} {...value} index={index} />
           ))}
         </div>
 
-        <SectionHeading size="medium">Our Team</SectionHeading>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.175 }}
+        >
+          <SectionHeading size="medium">Our Team</SectionHeading>
+        </motion.div>
         <div className={`grid ${getGridColumns()} gap-8 mt-8 justify-center`}>
           {teamData.map((member, index) => (
             <TeamMember key={index} {...member} />
