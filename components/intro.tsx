@@ -172,7 +172,7 @@ export default function Intro() {
                 outline-none focus:scale-110 hover:scale-110 active:scale-105 transition 
                 mb-3 text-base sm:text-lg text-gray-950 dark:text-gray-100"
               >
-                Become a Client
+                Partner with Us
               </button>
             </Magnetic>
 
