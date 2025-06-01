@@ -140,7 +140,7 @@ export default function Header() {
             onClick={() => setShowClientDialog(true)}
             className={buttonClasses}
           >
-            Become a Client
+            Partner with us
           </button>
         </Magnetic>
       </motion.div>
