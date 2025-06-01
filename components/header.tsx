@@ -239,7 +239,7 @@ export default function Header() {
                 }}
                 className="py-4 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 w-full text-center"
               >
-                Become a Client
+                Partner with Us
               </button>
             </div>
           </motion.div>
