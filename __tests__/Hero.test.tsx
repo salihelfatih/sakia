@@ -30,7 +30,7 @@ const mockProps = {
   },
   secondaryCTA: {
     label: "See selected work",
-    href: "#projects",
+    href: "#work",
   },
   microcopy: "No sales scripts. Clear scope. Thoughtful execution.",
 };

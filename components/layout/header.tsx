@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { links } from "@/lib/data";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import Image from "next/image";
@@ -12,6 +13,7 @@ import Logo from "@/public/logo.png";
 import Magnetic from "@/components/ui/magnetic";
 
 export default function Header() {
+  const router = useRouter();
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
   const [showClientDialog, setShowClientDialog] = useState(false);
@@ -97,8 +99,11 @@ export default function Header() {
                       window.scrollY +
                       yOffset;
                     window.scrollTo({ top: y, behavior: "smooth" });
+                    handleLinkClick(link.name);
+                  } else {
+                    // If element doesn't exist (e.g., on 404 page), navigate to homepage with hash
+                    router.push(`/${link.hash}`);
                   }
-                  handleLinkClick(link.name);
                 }}
                 aria-current={activeSection === link.name ? "page" : undefined}
               >

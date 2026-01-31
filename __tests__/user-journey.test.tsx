@@ -83,7 +83,7 @@ describe('User Journey Tests', () => {
           }}
           secondaryCTA={{
             label: "See our work",
-            href: "#projects",
+            href: "#work",
           }}
         />
       );
@@ -113,7 +113,7 @@ describe('User Journey Tests', () => {
           }}
           secondaryCTA={{
             label: "See our work",
-            href: "#projects",
+            href: "#work",
           }}
         />
       );
@@ -134,7 +134,7 @@ describe('User Journey Tests', () => {
           }}
           secondaryCTA={{
             label: "See our work",
-            href: "#projects",
+            href: "#work",
           }}
         />
       );
@@ -339,7 +339,7 @@ describe('User Journey Tests', () => {
           }}
           secondaryCTA={{
             label: "See our work",
-            href: "#projects",
+            href: "#work",
           }}
         />
       );

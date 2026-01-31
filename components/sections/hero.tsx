@@ -55,7 +55,7 @@ export default function Hero({
   };
 
   const handleSecondaryCTAClick = () => {
-    const element = document.getElementById("projects");
+    const element = document.getElementById("work");
     if (element) {
       const yOffset = -100;
       const y =

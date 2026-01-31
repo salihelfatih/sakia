@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { links } from "@/lib/data";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { useTheme } from "@/context/theme-context";
@@ -13,6 +14,7 @@ import { BsMoon, BsSun } from "react-icons/bs";
 import BecomeClientDialog from "@/components/dialogs/become-a-client";
 
 export default function MobileNav() {
+  const router = useRouter();
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
   const { theme, toggleTheme } = useTheme();
@@ -160,9 +162,12 @@ export default function MobileNav() {
                         if (element) {
                           const y = element.getBoundingClientRect().top + window.scrollY - 80;
                           window.scrollTo({ top: y, behavior: "smooth" });
+                          setActiveSection(link.name);
+                          setTimeOfLastClick(Date.now());
+                        } else {
+                          // If element doesn't exist (e.g., on 404 page), navigate to homepage with hash
+                          router.push(`/${link.hash}`);
                         }
-                        setActiveSection(link.name);
-                        setTimeOfLastClick(Date.now());
                         setShowMenu(false);
                       }}
                     >
