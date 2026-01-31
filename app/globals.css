@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -34,6 +43,13 @@
 @layer utilities {
   .remove-autofill-style {
     transition: background-color 0s 86400s, color 0s 86400s;
+  }
+  
+  .prevent-horizontal-scroll {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    overflow-y: visible !important;
   }
 }
 
@@ -83,6 +99,73 @@ select {
   background-clip: padding-box !important;
 }
 
+/* Keyboard Navigation and Focus Styles */
+/* Skip to content link - hidden until focused */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Enhanced focus indicators for all interactive elements */
+*:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.dark *:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Specific focus styles for buttons */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.dark button:focus-visible,
+.dark a:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Focus styles for form inputs */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 0;
+  border-color: #2563eb;
+}
+
+.dark input:focus-visible,
+.dark textarea:focus-visible,
+.dark select:focus-visible {
+  outline-color: #60a5fa;
+  border-color: #60a5fa;
+}
+
+/* Remove default focus outline for mouse users, keep for keyboard users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Custom scroll */
 .custom-scroll {
   scrollbar-width: thin;
@@ -123,4 +206,14 @@ select {
 
 .dark .custom-scroll::-webkit-scrollbar-thumb:hover {
   background-color: #cbd5e0;
+}
+
+/* Hide scrollbar for horizontal project gallery */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

@@ -1,9 +1,9 @@
 "use server";
 
-import sgMail from "@sendgrid/mail";
+import { Resend } from "resend";
 import { validateString, validateEmail, validatePhone, getErrorMessage } from "@/lib/utils";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendEmail = async (formData: FormData) => {
   const formType = formData.get("formType") as string;
@@ -63,32 +63,33 @@ export const sendEmail = async (formData: FormData) => {
     subject = "New Message from Contact Form";
   }
 
-  const verifiedEmail = process.env.SENDGRID_VERIFIED_SENDER;
-  const recipientEmail = process.env.RECIPIENT_EMAIL || verifiedEmail;
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+  const recipientEmail = process.env.RECIPIENT_EMAIL || fromEmail;
+  const bccEmail = process.env.BCC_EMAIL;
 
-  if (!verifiedEmail) {
-    console.error("SENDGRID_VERIFIED_SENDER is not set in environment variables");
+  if (!process.env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY is not set in environment variables");
     return { error: "Email configuration error" };
   }
-
-  if (!recipientEmail) {
-    console.error("Recipient email is not set");
-    return { error: "Email configuration error" };
-  }
-
-  const msg = {
-    to: recipientEmail,
-    from: verifiedEmail,
-    subject: subject,
-    html: htmlContent,
-    replyTo: email,
-  };
 
   try {
-    await sgMail.send(msg);
+    const emailData: any = {
+      from: fromEmail,
+      to: recipientEmail,
+      subject: subject,
+      html: htmlContent,
+      reply_to: email,
+    };
+
+    // Add BCC if configured
+    if (bccEmail) {
+      emailData.bcc = bccEmail;
+    }
+
+    await resend.emails.send(emailData);
     return { data: "Email sent successfully" };
   } catch (error: unknown) {
-    console.error("SendGrid error:", error);
+    console.error("Resend error:", error);
     return {
       error: getErrorMessage(error),
     };

@@ -3,13 +3,14 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 import { useInView, IntersectionOptions } from "react-intersection-observer";
 import type { SectionName } from "@/lib/types";
 
-export function useSectionInView(sectionName: SectionName, threshold = 0.5) {
-  const { setActiveSection, setSectionRef } = useActiveSectionContext();
+export function useSectionInView(sectionName: SectionName, threshold = 0.3) {
+  const { setActiveSection, setSectionRef, timeOfLastClick } = useActiveSectionContext();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const options: IntersectionOptions = {
     threshold,
     triggerOnce: false,
+    rootMargin: "-100px 0px -50% 0px",
   };
 
   const [inViewRef, inView] = useInView(options);
@@ -25,14 +26,14 @@ export function useSectionInView(sectionName: SectionName, threshold = 0.5) {
   );
 
   useEffect(() => {
-    if (inView) {
+    if (inView && Date.now() - timeOfLastClick > 1000) {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
 
       timeoutRef.current = setTimeout(() => {
         setActiveSection(sectionName);
-      }, 300);
+      }, 150);
     }
 
     return () => {
@@ -40,7 +41,7 @@ export function useSectionInView(sectionName: SectionName, threshold = 0.5) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [inView, setActiveSection, sectionName]);
+  }, [inView, setActiveSection, sectionName, timeOfLastClick]);
 
   return combinedRef;
 }

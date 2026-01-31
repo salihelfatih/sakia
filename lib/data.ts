@@ -1,17 +1,7 @@
-import React from "react";
-import { StaticImageData } from "next/image";
-import { CgWorkAlt } from "react-icons/cg";
-import { FaReact } from "react-icons/fa";
 import client1 from "@/public/avatars/client1.jpg";
 import client2 from "@/public/avatars/client2.jpg";
 import member1 from "@/public/avatars/member1.jpg";
 import member2 from "@/public/avatars/member2.jpg";
-import project1 from "@/public/projects/project1.png";
-import project2 from "@/public/projects/project2.png";
-import value1 from "@/public/values/value1.png";
-import value2 from "@/public/values/value2.png";
-import value3 from "@/public/values/value3.png";
-import value4 from "@/public/values/value4.png";
 
 
 export const links = [
@@ -25,10 +15,10 @@ export const links = [
   },
   {
     name: "About Us",
-    hash: "#about",
+    hash: "#about-us",
   },
   {
-    name: "Projects",
+    name: "Work",
     hash: "#projects",
   },
   {
@@ -37,143 +27,138 @@ export const links = [
   },
   {
     name: "Contact Us",
-    hash: "#contact",
+    hash: "#contact-us",
   },
 ] as const;
 
 export const packageData = [
   {
     title: "Starter",
-    description: "Perfect for small businesses just getting started.",
-    price: "$1,499",
+    description: "For teams launching a first version with clear scope and limited risk. Focused on shipping something reliable, understandable, and easy to build on.",
+    price: "Starting from $2,500",
+    duration: "Typically 4-6 weeks",
     features: [
-      "Frontend Development",
-      "E-commerce Integration",
-      "Basic SEO",
-      "Logo Design",
-      "Social Media Integration",
-      "1 month of support"
-    ],
+      "Validated scope and production-ready foundation",
+      "Clear, maintainable UI/UX aligned with your goals",
+      "Basic SEO and performance best practices",
+      "Mobile-friendly implementation",
+      "Contact and lead capture integration",
+      "1 month post-launch support to address early issues"
+    ]
   },
   {
     title: "Growth",
-    description: "Ideal for businesses looking to expand their online presence.",
-    price: "$2,999",
+    description: "For teams adding complexity, data, and real operational requirements. Designed to support growth without accumulating fragile systems or technical debt.",
+    price: "Starting from $5,000",
+    duration: "Typically 8-10 weeks",
     features: [
-      "All Starter features",
-      "Backend Development",
-      "Database Design",
-      "Advanced SEO",
-      "Brand Identity Package",
-      "3 months of support"
-    ],
+      "Systems hardened for scale and operational complexity",
+      "Custom backend development aligned with your product requirements",
+      "Database design focused on reliability and future growth",
+      "Secure user authentication and access control",
+      "API integrations with third-party services",
+      "3 months post-launch support for stabilization and iteration"
+    ]
   },
   {
     title: "Enterprise",
-    description: "Comprehensive solution for large-scale projects.",
-    price: "$5,999",
+    description: "For organizations where reliability, security, and coordination matter more than speed alone. Built to support complex workflows, multiple stakeholders, and long-term ownership.",
+    price: "Starting from $10,000",
+    duration: "Typically 12+ weeks",
     features: [
-      "All Growth features",
-      "Mobile App Development",
-      "Advanced Database Solutions",
-      "Machine Learning Integration",
-      "Motion Graphics & Animations",
-      "6 months of premium support"
-    ],
-  },
-] as const;
+      "Long-term ownership, security review, and coordination",
+      "Advanced data analytics and reporting",
+      "Third-party integrations across internal and external systems",
+      "Performance optimization for scale and reliability",
+      "Security review and compliance considerations",
+      "6 months premium support and collaboration"
+    ]
+  }
+];
 
 export const expertiseAreas = [
   {
-    title: "Web Development",
-    description: "We craft secure and responsive web aplications using modern technologies.",
+    title: "Product Strategy & UX",
+    description: "We define product requirements, design user interfaces, and validate assumptions through prototyping and testing. Scoped collaboratively based on your product stage.",
     services: [
-      "Frontend Development",
-      "Backend Development",
-      // "Full-stack Development",
-      "Database Design",
-      "Content Management Systems",
-      "E-commerce Solutions"
+      "User research and persona development",
+      "Information architecture and user flows",
+      "Wireframes and interactive prototypes",
+      "Visual design and brand identity",
+      "Usability testing and iteration"
     ],
     technologies: [
-      "React", "Next.js", "Vue.js", "Node.js", "Express", "ASP.NET", "Django", 
-      "Laravel", "Spring Boot", "Ruby on Rails", "PostgreSQL", "MySQL",
-      "MongoDB", "Firebase", "WordPress", "WooCommerce", "Stripe", "PayPal"
+      "Figma", "Adobe XD", "Sketch", "InVision", "Miro", "UserTesting", 
+      "Hotjar", "Google Analytics"
     ]
-
   },
   {
-    title: "Mobile Development",
-    description: "We develop mobile applications for both Android and iOS platforms.",
+    title: "Web & Mobile Development",
+    description: "We build responsive web applications and mobile products using modern frameworks. Adjusted based on complexity and technical requirements.",
     services: [
-      "iOS App Development",
-      "Android App Development",
-      "Cross-platform Development"
+      "Responsive web applications (React, Next.js, Vue)",
+      "Mobile apps (React Native, Progressive Web Apps)",
+      "API design and backend development",
+      "Database architecture and optimization",
+      "Deployment and DevOps setup"
     ],
-    technologies: ["Swift", "Kotlin", "React Native"]
+    technologies: [
+      "React", "Next.js", "Vue.js", "React Native", "Node.js", "Express", 
+      "PostgreSQL", "MongoDB", "Firebase", "Vercel", "AWS", "Docker"
+    ]
   },
   {
-    title: "Machine Learning",
-    description: "We implement machine learning models that help make data-driven decisions.",
+    title: "Data & AI Integration",
+    description: "We integrate data pipelines, machine learning models, and intelligent features into production systems. Scoped collaboratively based on your data maturity.",
     services: [
-      "Predictive Modeling",
-      "Data Analysis and Visualization",
-      "Computer Vision"
+      "Data pipeline design and implementation",
+      "Machine learning model integration",
+      "Natural language processing features",
+      "Recommendation systems",
+      "Analytics and insights dashboards"
     ],
-    technologies: ["Python", "PyTorch", "Scikit-learn"]
+    technologies: [
+      "Python", "PyTorch", "TensorFlow", "Scikit-learn", "OpenAI API", 
+      "Hugging Face", "Pandas", "NumPy"
+    ]
   },
   {
-    title: "Digital Marketing",
-    description: "We help businesses rank higher on search engines and reach more customers.",
+    title: "Growth & Marketing",
+    description: "We optimize site performance, implement analytics, and set up conversion tracking. Adjusted based on your growth stage and channels.",
     services: [
-      "Search Engine Optimization (SEO)",
-      "Content Marketing",
-      "Paid Advertising"
+      "SEO optimization and content strategy",
+      "Conversion rate optimization (CRO)",
+      "Email marketing automation",
+      "Social media integration",
+      "Analytics and performance tracking"
     ],
-    technologies: ["Google Ads", "Social Media Ads"]
-  },
-  {
-    title: "Design Services",
-    description: "We deliver stunning visuals that help businesses stand out from the competition.",
-    services: [
-      "Brand Identity Design",
-      "Logo Design",
-      "UI/UX Design",
-    ],
-    technologies: ["Photoshop", "Illustrator", "Figma", ]
-  },
-  {
-    title: "Animation Services",
-    description: "We deliver stunning visuals that help businesses stand out from the competition.",
-    services: [
-      "Motion Graphics",
-      "2D Animation",
-      "3D Animation",
-    ],
-    technologies: ["Blender", "Maya", "Toon Boom"]
+    technologies: [
+      "Google Analytics", "SEMrush", "Mailchimp", "HubSpot", "Mixpanel",
+      "Hotjar", "Optimizely", "Segment"
+    ]
   },
 ];
 
 export const valuesData = [
   {
-    title: "Empowerment",
-    description: "We believe in the power of technology to uplift and enable people and businesses to reach their full potential.",
-    icon: value1,
+    title: "Careful Execution",
+    description: "We test thoroughly, document clearly, and maintain code that others can understand and extend.",
+    icon: "💖",
   },
   {
-    title: "Collaboration",
-    description: "We work closely with our clients, valuing their input and fostering a spirit of teamwork to achieve the best results.",
-    icon: value2,
+    title: "Direct Communication",
+    description: "We provide regular updates, clear timelines, and honest assessments of what's working and what needs adjustment.",
+    icon: "🤝",
   },
   {
-    title: "Integrity",
-    description: "We uphold the highest standards of honesty and transparency in all our interactions and deliverables.",
-    icon: value4,
+    title: "Reliable Delivery",
+    description: "We scope projects realistically, deliver incrementally, and support systems through launch and stabilization.",
+    icon: "🎯",
   },
   {
-    title: "Sustainability",
-    description: "We create solutions that are effective and sustainable, delivering long-term benefits for our clients.",
-    icon:  value3,
+    title: "Sustainable Design",
+    description: "We build systems that can scale, use stable technologies, and create documentation for future maintenance.",
+    icon: "🌱",
   },
 ] as const;
 
@@ -192,20 +177,119 @@ export const teamData = [
 
 export const projectsData = [
   {
-    title: "Radio Deeshak",
-    description:
-      "A music streaming platform that allows users to listen to their favorite songs.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    imageUrl: project2,
-    link: "https://deeshak.com",
+    title: "RezGenie",
+    description: "AI-powered resume feedback tool for job seekers. Provides structure, clarity, and improvement suggestions while preserving authentic voice. Helps users strengthen resumes without generic corporate language.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/RezGenie.png",
+    link: "https://rezgenie.netlify.app",
   },
   {
-    title: "Nabeel Barber Shop",
-    description:
-      "A website for a barber shop that allows customers to book appointments online.",
-    tags: ["WordPress", "Elementor", "WooCommerce", "SEO"],
-    imageUrl: project1,
-    link: "https://nabeelbarber.shop",
+    title: "Nimbly",
+    description: "Grocery savings aggregator for budget-conscious shoppers. Surfaces personalized deals and clearance items from nearby stores in a simple interface. Helps users reduce grocery costs without complex coupon management.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Nimbly.png",
+    link: "https://nimbly-demo.netlify.app",
+  },
+  {
+    title: "Seshio",
+    description: "AI-powered study workspace for complex material. Lets learners upload documents, organize them into notebooks, and ask questions grounded in their own content. Generates quizzes, summaries, and flashcards to support repeated study sessions.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Seshio.png",
+    link: "https://seshio.netlify.app",
+  },
+  {
+    title: "TapIn",
+    description: "Digital access control for multi-tenant buildings. Replaces physical keys with secure wallet-based passes. Tenants unlock doors using Apple Wallet or Google Wallet, while property managers control access from a centralized dashboard.",
+    tags: ["Next.js", "Django", "PostgreSQL"],
+    imageUrl: "/projects/TapIn.png",
+    link: "https://tapin-demo.netlify.app",
+  },
+  {
+    title: "Chapters",
+    description: "Rate-limited social platform for writers and readers. Users share one post per day, designed to reduce content overload and encourage more thoughtful engagement. Built for communities seeking alternatives to high-frequency social feeds.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Chapters.png",
+    link: "https://chapters-demo.netlify.app",
+  },
+  {
+    title: "fLOKr",
+    description: "Resource coordination platform for community organizations. Connects people to local resources, mentorship, and mutual aid networks. Designed for newcomers, community groups, and grassroots organizations managing referrals and support networks.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/fLOKr.png",
+    link: "https://flokr.netlify.app",
+  },
+  {
+    title: "Makana",
+    description: "Practice tracking platform for personal development. Focuses on clarity and consistency without gamification. Built for individuals and small groups tracking habits, reflections, and progress over time.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Makana.png",
+    link: "https://makana-demo.netlify.app",
+  },
+  {
+    title: "RiseUp",
+    description: "Event discovery platform for grassroots organizing. Helps people find local events, initiatives, and causes through chronological feeds instead of algorithmic ranking. Built for organizers and activists coordinating local action.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/RiseUp.png",
+    link: "https://riseup-demo.netlify.app",
+  },
+  {
+    title: "Takia",
+    description: "Operations platform for community kitchens. Manages food sourcing, volunteer coordination, and distribution for shared kitchen initiatives. Designed for community-led food security programs and zero-waste kitchen operations.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Takia.png",
+    link: "https://takia-demo.netlify.app",
+  },
+  {
+    title: "Zout",
+    description: "Football striking game focused on timing, contact quality, and scoring logic. Built in Godot with practice, penalty, and free kick modes to test feel, physics, and feedback. Used as an internal playground for tight controls and automated gameplay testing.",
+    tags: ["Godot", "GDScript", "Game dev"],
+    imageUrl: "/projects/Zout.png",
+    link: "https://zout-demo.netlify.app",
+  },
+  {
+    title: "sNDa",
+    description: "Humanitarian coordination platform for Sudanese communities. Manages aid distribution, referrals, and community storytelling for populations affected by conflict and displacement. Includes multilingual support for Arabic and English.",
+    tags: ["Next.js", "Django", "PostgreSQL"],
+    imageUrl: "/projects/sNDa.png",
+    link: "https://snda.netlify.app/en",
+  },
+  {
+    title: "Deeshak",
+    description: "Streaming radio platform for Sudanese communities abroad. Hosts live radio, scheduled shows, and recorded segments in a low-bandwidth, mobile-friendly interface. Built for diaspora groups that need a simple, reliable way to broadcast culture and community updates.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Deeshak.png",
+    link: "https://deeshak-demo.netlify.app",
+  },
+] as const;
+
+export const differentiators = [
+  {
+    id: "speed",
+    icon: "⚡",
+    title: "Efficient Delivery",
+    description: "We scope clearly, work in focused sprints, and deliver production-ready systems in weeks, not months.",
+    supportingSignal: "Most projects complete in 4-8 weeks",
+  },
+  {
+    id: "transparent",
+    icon: "🔍",
+    title: "Clear Process",
+    description: "We provide weekly updates, share work-in-progress demos, and document decisions so you understand what we're building and why.",
+    supportingSignal: "Weekly progress updates included",
+  },
+  {
+    id: "technical",
+    icon: "🛠️",
+    title: "Production Quality",
+    description: "We use proven frameworks, write tests for critical paths, and follow practices that ensure maintainable systems.",
+    supportingSignal: "Test coverage on core functionality",
+  },
+  {
+    id: "partnership",
+    icon: "🚀",
+    title: "Ongoing Support",
+    description: "We stay involved through launch, provide documentation for handoff, and offer maintenance support.",
+    supportingSignal: "Post-launch support included",
   },
 ] as const;
 
@@ -213,7 +297,7 @@ export const reviewsData = [
   {
     name: "Osman Malik",
     organization: "Radio Deeshak",
-    comment: "I am very satisfied with the work done by Sakia Labs. They exceeded my expectations and I would highly recommend them to anyone looking for a reliable tech partner.",
+    comment: "I'm very satisfied with the work Sakia Labs delivered. They exceeded my expectations on both quality and timeline, and I'd recommend them to anyone looking for a reliable tech partner.",
     rating: 5,
     date: "2024-05-14",
     avatarUrl: client1,
@@ -221,7 +305,7 @@ export const reviewsData = [
   {
     name: "Nabeel Musa",
     organization: "Nabeel Barber Shop",
-    comment: "It was a great experience working with the team at Sakia Labs. They were very professional and delivered the project on time.",
+    comment: "Great experience working with the Sakia Labs team. They were professional throughout, kept me informed at every step, and delivered the project on time.",
     rating: 4.5,
     date: "2023-08-02",
     avatarUrl: client2,

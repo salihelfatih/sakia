@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sakia Labs
 
-## Getting Started
+> A digital product studio building calm, reliable software end-to-end.
 
-First, run the development server:
+Sakia Labs designs and builds production-ready systems for organizations that value clarity, care, and long-term reliability. From early ideas to shipped platforms, we focus on thoughtful execution and clean handoff.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What We Value
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 💖 **Care**  
+  Pride in our craft, respect for the people using it, and responsibility for what we leave behind.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- 🧩 **Clarity**  
+  Clear scope, clear communication, and systems that are easy to understand and maintain.
 
-## Learn More
+- 🛠️ **Production Quality**  
+  Software designed to run in real-world conditions, not just demos.
 
-To learn more about Next.js, take a look at the following resources:
+- 🧭 **Built to Last**  
+  Long-view thinking, maintainable architecture, and responsible technical decisions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+This site is built with a modern, production-focused web stack:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animation:** Framer Motion, GSAP
+- **Forms & Email:** Resend
+- **Testing:** Jest, React Testing Library, fast-check
+- **Tooling:** ESLint, Prettier, Husky, lint-staged
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## Deployment
+
+Optimized for deployment on Vercel with environment-based configuration.
+
+---
+
+## Contact
+
+- **Website:** https://sakialabs.io  
+- **Email:** sakia.labs@hey.com  
+- **GitHub:** https://github.com/sakialabs  
+
+---
+
+## Open Work
+
+Some of our work is developed in the open.
+
+- GitHub: [Sakia Labs Repository](https://github.com/orgs/sakialabs/repositories) 
+
+---
+
+## License
+MIT © [Sakia Labs](https://sakia.vercel.app/)
+
+---
+
+Built with 💖 by Sakia Labs
