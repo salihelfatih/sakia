@@ -62,7 +62,7 @@ export default function Hero({
         element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
-    setActiveSection("Projects");
+    setActiveSection("Work");
     setTimeOfLastClick(Date.now());
   };
 
