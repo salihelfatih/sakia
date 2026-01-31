@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { testimonials } from '@/lib/data';
-import { Testimonial } from '@/components/ui/testimonial';
+import { reviewsData } from '@/lib/data';
+import Review from '@/components/ui/review';
 import { useSectionInView } from '@/lib/hooks';
 
 export const Testimonials: React.FC = () => {
@@ -41,7 +41,7 @@ export const Testimonials: React.FC = () => {
         role="list"
         aria-label="Client testimonials"
       >
-        {testimonials.map((testimonial, index) => (
+        {reviewsData.map((review, index) => (
           <motion.div
             key={index}
             role="listitem"
@@ -55,7 +55,7 @@ export const Testimonials: React.FC = () => {
             }}
             className="h-full"
           >
-            <Testimonial {...testimonial} />
+            <Review {...review} index={index} />
           </motion.div>
         ))}
       </div>
