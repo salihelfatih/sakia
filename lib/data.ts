@@ -177,11 +177,25 @@ export const teamData = [
 
 export const projectsData = [
   {
+    title: "Seshio",
+    description: "AI-powered study workspace for complex material. Lets learners upload documents, organize them into notebooks, and ask questions grounded in their own content. Generates quizzes, summaries, and flashcards to support repeated study sessions.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Seshio.png",
+    link: "https://seshio.netlify.app",
+  },
+  {
     title: "RezGenie",
     description: "AI-powered resume feedback tool for job seekers. Provides structure, clarity, and improvement suggestions while preserving authentic voice. Helps users strengthen resumes without generic corporate language.",
     tags: ["Next.js", "FastAPI", "PostgreSQL"],
     imageUrl: "/projects/RezGenie.png",
     link: "https://rezgenie.netlify.app",
+  },
+  {
+    title: "sNAKr",
+    description: "Shared household inventory platform. Tracks fridge and pantry items across households using fuzzy stock states and receipt ingestion, then builds restock lists to reduce surprise shortages and waste.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/sNAKr.png",
+    link: "https://snakr-demo.netlify.app",
   },
   {
     title: "Nimbly",
@@ -191,39 +205,11 @@ export const projectsData = [
     link: "https://nimbly-demo.netlify.app",
   },
   {
-    title: "Seshio",
-    description: "AI-powered study workspace for complex material. Lets learners upload documents, organize them into notebooks, and ask questions grounded in their own content. Generates quizzes, summaries, and flashcards to support repeated study sessions.",
-    tags: ["Next.js", "FastAPI", "PostgreSQL"],
-    imageUrl: "/projects/Seshio.png",
-    link: "https://seshio.netlify.app",
-  },
-  {
-    title: "TapIn",
-    description: "Digital access control for multi-tenant buildings. Replaces physical keys with secure wallet-based passes. Tenants unlock doors using Apple Wallet or Google Wallet, while property managers control access from a centralized dashboard.",
-    tags: ["Next.js", "Django", "PostgreSQL"],
-    imageUrl: "/projects/TapIn.png",
-    link: "https://tapin-demo.netlify.app",
-  },
-  {
-    title: "Chapters",
-    description: "Rate-limited social platform for writers and readers. Users share one post per day, designed to reduce content overload and encourage more thoughtful engagement. Built for communities seeking alternatives to high-frequency social feeds.",
-    tags: ["Next.js", "FastAPI", "PostgreSQL"],
-    imageUrl: "/projects/Chapters.png",
-    link: "https://chapters-demo.netlify.app",
-  },
-  {
     title: "fLOKr",
     description: "Resource coordination platform for community organizations. Connects people to local resources, mentorship, and mutual aid networks. Designed for newcomers, community groups, and grassroots organizations managing referrals and support networks.",
     tags: ["Next.js", "FastAPI", "PostgreSQL"],
     imageUrl: "/projects/fLOKr.png",
     link: "https://flokr.netlify.app",
-  },
-  {
-    title: "Makana",
-    description: "Practice tracking platform for personal development. Focuses on clarity and consistency without gamification. Built for individuals and small groups tracking habits, reflections, and progress over time.",
-    tags: ["Next.js", "FastAPI", "PostgreSQL"],
-    imageUrl: "/projects/Makana.png",
-    link: "https://makana-demo.netlify.app",
   },
   {
     title: "RiseUp",
@@ -233,6 +219,27 @@ export const projectsData = [
     link: "https://riseup-demo.netlify.app",
   },
   {
+    title: "Chapters",
+    description: "Rate-limited social platform for writers and readers. Users share one post per day, designed to reduce content overload and encourage more thoughtful engagement. Built for communities seeking alternatives to high-frequency social feeds.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Chapters.png",
+    link: "https://chapters-demo.netlify.app",
+  },
+  {
+    title: "Makana",
+    description: "Practice tracking platform for personal development. Focuses on clarity and consistency without gamification. Built for individuals and small groups tracking habits, reflections, and progress over time.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL"],
+    imageUrl: "/projects/Makana.png",
+    link: "https://makana-demo.netlify.app",
+  },
+    {
+    title: "TapIn",
+    description: "Digital access control for multi-tenant buildings. Replaces physical keys with secure wallet-based passes. Tenants unlock doors using Apple Wallet or Google Wallet, while property managers control access from a centralized dashboard.",
+    tags: ["Next.js", "Django", "PostgreSQL"],
+    imageUrl: "/projects/TapIn.png",
+    link: "https://tapin-demo.netlify.app",
+  },
+  {
     title: "Takia",
     description: "Operations platform for community kitchens. Manages food sourcing, volunteer coordination, and distribution for shared kitchen initiatives. Designed for community-led food security programs and zero-waste kitchen operations.",
     tags: ["Next.js", "FastAPI", "PostgreSQL"],
@@ -240,15 +247,8 @@ export const projectsData = [
     link: "https://takia-demo.netlify.app",
   },
   {
-    title: "Zout",
-    description: "Football striking game focused on timing, contact quality, and scoring logic. Built in Godot with practice, penalty, and free kick modes to test feel, physics, and feedback. Used as an internal playground for tight controls and automated gameplay testing.",
-    tags: ["Godot", "GDScript", "Game dev"],
-    imageUrl: "/projects/Zout.png",
-    link: "https://zout-demo.netlify.app",
-  },
-  {
     title: "sNDa",
-    description: "Humanitarian coordination platform for Sudanese communities. Manages aid distribution, referrals, and community storytelling for populations affected by conflict and displacement. Includes multilingual support for Arabic and English.",
+    description: "Support and gifting platform for children and communities. Combines shared wishlists, group contributions, and coordinated follow-up so families, volunteers, and organizations can see what’s needed and what’s been delivered.",
     tags: ["Next.js", "Django", "PostgreSQL"],
     imageUrl: "/projects/sNDa.png",
     link: "https://snda.netlify.app/en",
@@ -258,7 +258,7 @@ export const projectsData = [
     description: "Streaming radio platform for Sudanese communities abroad. Hosts live radio, scheduled shows, and recorded segments in a low-bandwidth, mobile-friendly interface. Built for diaspora groups that need a simple, reliable way to broadcast culture and community updates.",
     tags: ["Next.js", "FastAPI", "PostgreSQL"],
     imageUrl: "/projects/Deeshak.png",
-    link: "https://deeshak-demo.netlify.app",
+    link: "https://deeshak.netlify.app",
   },
 ] as const;
 

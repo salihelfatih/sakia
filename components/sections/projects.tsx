@@ -29,7 +29,7 @@ function Project({ title, description, tags, imageUrl, link, index }: ProjectPro
     >
       <div className="bg-gray-100 dark:bg-white/10 rounded-3xl overflow-hidden shadow-none sm:shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col border border-black/5 hover:border-blue-500/50 dark:hover:border-blue-400/50 h-full">
         {/* Image Container */}
-        <div className="relative h-[280px] sm:h-[320px] md:h-[240px] overflow-hidden">
+        <div className="relative h-[280px] sm:h-[320px] md:h-[220px] lg:h-[240px] 2xl:h-[200px] overflow-hidden">
           <Image
             src={imageUrl}
             alt={title}
@@ -40,20 +40,20 @@ function Project({ title, description, tags, imageUrl, link, index }: ProjectPro
         </div>
 
         {/* Content */}
-        <div className="p-6 sm:p-8 md:p-6 flex flex-col flex-grow">
-          <h3 className="text-2xl sm:text-3xl md:text-2xl font-semibold mb-3 sm:mb-4 md:mb-3 text-gray-900 dark:text-white">
+        <div className="p-6 sm:p-8 md:p-5 lg:p-6 2xl:p-5 flex flex-col flex-grow">
+          <h3 className="text-2xl sm:text-3xl md:text-xl lg:text-2xl 2xl:text-xl font-semibold mb-3 sm:mb-4 md:mb-2 lg:mb-3 2xl:mb-2 text-gray-900 dark:text-white">
             {title}
           </h3>
-          <p className="text-base sm:text-lg md:text-base text-gray-700 dark:text-white/70 leading-relaxed mb-4 sm:mb-6 md:mb-4 flex-grow">
+          <p className="text-base sm:text-lg md:text-sm lg:text-base 2xl:text-sm text-gray-700 dark:text-white/70 leading-relaxed mb-4 sm:mb-6 md:mb-3 lg:mb-4 2xl:mb-3 flex-grow">
             {description}
           </p>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4 sm:mb-6 md:mb-4">
-            {tags.map((tag, tagIndex) => (
+          <div className="flex flex-wrap gap-2 mb-4 sm:mb-6 md:mb-3 lg:mb-4 2xl:mb-3">
+            {tags.slice(0, 3).map((tag, tagIndex) => (
               <span
                 key={tagIndex}
-                className="px-4 py-1.5 text-sm font-medium bg-black/[0.7] text-white rounded-full dark:bg-white/10"
+                className="px-3 py-1 text-xs font-medium bg-black/[0.7] text-white rounded-full dark:bg-white/10"
               >
                 {tag}
               </span>
@@ -65,11 +65,11 @@ function Project({ title, description, tags, imageUrl, link, index }: ProjectPro
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gray-900 dark:text-white font-bold hover:gap-4 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-base sm:text-lg md:text-base group/link hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 text-gray-900 dark:text-white font-bold hover:gap-4 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-sm md:text-base lg:text-base 2xl:text-sm group/link hover:scale-105 active:scale-95"
           >
             <span>View Project</span>
             <svg
-              className="w-5 h-5 group-hover/link:translate-x-1 transition-transform"
+              className="w-4 h-4 md:w-5 md:h-5 group-hover/link:translate-x-1 transition-transform"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -231,7 +231,10 @@ function MobileProjectCarousel({ projects }: { projects: typeof projectsData }) 
 export default function Projects() {
   const ref = useSectionInView("Work", 0.2);
   const [currentPage, setCurrentPage] = useState(0);
-  const cardsPerPage = 3;
+  
+  // Responsive cards per page - will be handled by CSS grid
+  // On 2xl screens: 4 cards, lg: 3 cards, md: 2 cards, mobile: 1 card (carousel)
+  const cardsPerPage = 4; // Maximum cards per page for 2xl screens
   const totalPages = Math.ceil(projectsData.length / cardsPerPage);
 
   const nextPage = () => {
@@ -274,7 +277,7 @@ export default function Projects() {
       </div>
 
       {/* Desktop: Multi-card Carousel */}
-      <div className="hidden md:block relative w-full max-w-[1210px] mx-auto px-4 sm:px-0">
+      <div className="hidden md:block relative w-full max-w-[1600px] mx-auto px-4 sm:px-0">
         {/* Left Arrow */}
         <Magnetic>
           <button
@@ -321,10 +324,10 @@ export default function Projects() {
           </button>
         </Magnetic>
 
-        {/* Cards Grid */}
+        {/* Cards Grid - Responsive: 1 col (mobile), 2 cols (md), 3 cols (lg), 4 cols (2xl) */}
         <motion.div
           key={currentPage}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 items-stretch"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 items-stretch"
         >
           {getCurrentPageCards().map((project, index) => (
             <motion.div
@@ -334,7 +337,7 @@ export default function Projects() {
               exit={{ opacity: 0, y: -50 }}
               transition={{
                 duration: 0.5,
-                delay: index * 0.15,
+                delay: index * 0.1,
                 ease: "easeOut"
               }}
               className="h-full"
